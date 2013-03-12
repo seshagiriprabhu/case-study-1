@@ -4,9 +4,6 @@
    which returns the i-th bit of u	*/
 
 #include <stdio.h>
-#include <unistd.h>
-#include <assert.h>
-#include <string.h>
 #include <stdlib.h>
 
 /* This function checks whether the first binary is position is 0 or 1 */
@@ -54,6 +51,6 @@ int main ( int argc, char ** argv ) {
 			break;
 		}
 		printf ( "=====================================================\n");
-	} while (choice != 0 || choice > 3 || choice < 0);
+	} while ( choice < 1 || choice > 3 );
 
 }
