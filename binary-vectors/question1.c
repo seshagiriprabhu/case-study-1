@@ -9,10 +9,12 @@
 #include <string.h>
 #include <stdlib.h>
 
+/* This function checks whether the first binary is position is 0 or 1 */
 void check_first_bit ( unsigned int bit ) {
-	printf ("The first bit is : %d\n", bit&1);
+	printf ("The first bit is : %d\n", ( bit & 1 ) );
 }
 
+/* This function checks the value of the given integer's ith the binary position */
 int check_random_bit ( unsigned int bit, int i ) {
 	int temp = ( bit >> i ) &	1;
 	return temp;
@@ -30,14 +32,16 @@ int main ( int argc, char ** argv ) {
 		printf ( "Enter your choice: ");
 		scanf ("%d", &choice);
 
-		printf ("Enter the integer: ");
-		scanf ("%du", &u);
 
 		switch ( choice ) {
-			case 1: check_first_bit (u);
+			case 1: printf ("Enter the integer: ");
+					scanf ("%du", &u);
+					check_first_bit (u);
 			break;
 
-			case 2:	printf ("Enter the value of ith bit which you want to extract from the integer: ");
+			case 2: printf ("Enter the integer: ");
+					scanf ("%du", &u);
+					printf ("Enter the value of ith bit which you want to extract from the integer: ");
 					scanf ("%d", &i);
 					printf ("The requested bit is : %d\n" , check_random_bit(u, i));
 			break;
