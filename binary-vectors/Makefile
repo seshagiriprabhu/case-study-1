@@ -14,5 +14,11 @@ question2: question2.0
 question2.o: question2.c
 			gcc -c -O0 -fno-dce -fno-stack-protector -static -m32 -w question2.c
 
+question3: question3.o
+			gcc -o question3 question3.o
+
+question3.o: question3.c
+			gcc -c -O0 -fno-dce -fno-stack-protector -static -m32 -w question3.c
+
 clean: 
-		rm -rf *.o question1 question2
+		rm -rf *.o question1 question2 question3
