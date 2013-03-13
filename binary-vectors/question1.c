@@ -51,6 +51,6 @@ int main ( int argc, char ** argv ) {
 			break;
 		}
 		printf ( "=====================================================\n");
-	} while ( choice < 1 || choice > 3 );
-
+	} while ( ! ( choice < 1 || choice > 3 ) );
+	return 0;
 }
