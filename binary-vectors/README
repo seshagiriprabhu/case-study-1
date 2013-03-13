@@ -13,10 +13,52 @@ A function taking as inputs an integer u (viewed as
 a binary vector) and an integer i, which returns the 
 i-th bit of u.
 
+Value of first bit:
+==================
+%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%
+0000000000000000 0000000000001010
+%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%
+Unsigned int 10 is represented like ^^ in binary in 
+a 32 bit machine/compiler.
+
+We are going to just do a logical and with '1'
+
+0000000000000000 0000000000001010 &
+0000000000000000 0000000000000001
+---------------------------------
+0000000000000000 0000000000000000
+
+Value of ith bit:
+=================
+Lets take 10, and this is how it is reprented in binary
+%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%
+0000000000000000 0000000000001010
+%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%
+And lets say i is 2 
+
+After the first right shift
+%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%
+0000000000000000 0000000000000101
+%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%
+
+After the second right shift
+%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%
+0000000000000000 0000000000000010
+%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%
+
+In-order to find the value of ith bit, a logical AND
+operation is done to the last binary.
+
+0000000000000000 0000000000000010 &
+0000000000000000 0000000000000001
+---------------------------------
+0000000000000000 0000000000000000
+
 Question2:
 ==========
 A function returning the indice of the first non-zero 
 bit of a binary vector.
+
 
 Question3:
 ==========
