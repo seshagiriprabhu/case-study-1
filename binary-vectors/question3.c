@@ -1,6 +1,9 @@
 /* Written by Giri
-   A function that implements the Hamming 
-   weight of a binary vector */
+   A function that implements the Hamming  weight of a binary 
+   vector 
+   In this example, I have used a built in function called 
+   int __builtin_popcount (unsigned int x), which will return 
+   the number of non-zero values in the given unsigned int */
 
 #include <stdio.h>
 #include <stdlib.h>
