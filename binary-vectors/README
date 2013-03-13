@@ -1,0 +1,41 @@
+INTRO - Binary Vectors
+======================
+u >> i = (ui, ui+1 , . . . , um−1, 0, . . . )
+u&v = (u0 ∗ v0 , . . . , um−1 ∗ vm−1)
+
+For example, to get the first bit (u0 ) of an integer 
+u, we can write u&1. Similarly, (u >> i)&1 gives the 
+i-th bit (ui) of u
+
+Question1: 
+==========
+A function taking as inputs an integer u (viewed as 
+a binary vector) and an integer i, which returns the 
+i-th bit of u.
+
+Question2:
+==========
+A function returning the indice of the first non-zero 
+bit of a binary vector.
+
+Question3:
+==========
+A function that implements the Hamming weight of a 
+binary vector
+
+COMPILE
+=======
+To compile all the C files
+$ make all
+
+To compile question1
+$ make question1
+
+To compile question2
+$ make question2
+
+To compile question3
+$ make question2
+
+To clean all the object files and binary files
+$ make clean
