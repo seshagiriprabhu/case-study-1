@@ -1,0 +1,53 @@
+INTRO - Binary Vectors
+======================
+A Boolean function in m variables is a mapping from Fm 2
+into F2. For example, for m = 2, the following mapping 
+defines a Boolean function f :
+
+ (0, 0) → 0
+ (1, 0) → 1
+ (0, 1) → 0
+ (1, 1) → 0
+
+Question4: 
+==========
+A function taking as input a truthtable (as an array of 
+ints), and returning its Hamming weight.
+
+The Hamming distance between two Boolean functions is the 
+Hamming weight of their sum (note that the truthtable of 
+the sum of two Boolean functions is the sum of the 
+truthtables of these functions). In other words, it is 
+equal to the cardinal of the set
+
+Question5:
+==========
+A function hamming_distance(f1,f2) returning an int 
+(the prototype in C would/could be 
+int hamming_distance(int f1[], int f2[], int m))
+
+
+Question6:
+==========
+A function in m variables is said to be balanced if it 
+takes values 0 and 1 the same number of times. What is 
+the Hamming weight of such a Boolean function? Implement 
+a function is_balanced(f) which checks the balancedness 
+of a Boolean function f
+
+COMPILE
+=======
+To compile all the C files
+$ make all
+
+To compile question4
+$ make question4
+
+To compile question5
+$ make question5
+
+To compile question6
+$ make question6
+
+To clean all the object files and binary files
+$ make clean
