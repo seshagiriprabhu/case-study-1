@@ -14,6 +14,9 @@ Question4:
 A function taking as input a truthtable (as an array of 
 ints), and returning its Hamming weight.
 
+The Hamming weight of a Boolean function is the number of 
+ones in the binary truth table
+
 The Hamming distance between two Boolean functions is the 
 Hamming weight of their sum (note that the truthtable of 
 the sum of two Boolean functions is the sum of the 
