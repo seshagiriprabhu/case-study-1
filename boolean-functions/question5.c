@@ -22,8 +22,8 @@ int main ( int argc, char ** argv ) {
 	printf ("Enter the value of m: ");
 	scanf ("%d", &m);
 
-	f1 = ( unsigned int * ) malloc ( m * sizeof(int) );
-	f2 = ( unsigned int * ) malloc ( m * sizeof(int) );
+	f1 = ( unsigned int * ) malloc ( m * sizeof(unsigned int) );
+	f2 = ( unsigned int * ) malloc ( m * sizeof(unsigned int) );
 
 	for ( j = 0; j < 2; j++ ) {
 		for ( i = 0; i < m; i++ ) {
