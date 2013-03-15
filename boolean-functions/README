@@ -1,5 +1,5 @@
-INTRO - Binary Vectors
-======================
+INTRO - Boolean Function
+========================
 A Boolean function in m variables is a mapping from Fm 2
 into F2. For example, for m = 2, the following mapping 
 defines a Boolean function f :
