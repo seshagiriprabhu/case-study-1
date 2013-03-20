@@ -1,0 +1,42 @@
+INTRO - Walsh Theorm
+====================
+The Walsh transform fˆ of a Boolean function f is the 
+mapping which associates to a vector a ∈ F2^m the 
+quantity
+
+Question7: 
+==========
+A function which computes the scalar product between two 
+vectors of F2 given as integers
+
+Question8:
+==========
+For e ∈ F2, (−1)e is the sign function, with (−1)0 = 1 
+and (−1)1 = −1. Implement this function (int sign(int e) 
+in C).
+
+Question9:
+==========
+a function which computes the Walsh transform fˆ(a) of a 
+Boolean function f (given as a truthtable) at point a ∈ 
+F2 m. Write a function which computes fˆ(a) for all 
+a ∈ Fm 2 (it can return an array of size 2m containing 
+all the values). What is its complexity?
+
+
+COMPILE
+=======
+To compile all the C files
+$ make all
+
+To compile question4
+$ make question7
+
+To compile question5
+$ make question8
+
+To compile question6
+$ make question9
+
+To clean all the object files and binary files
+$ make clean

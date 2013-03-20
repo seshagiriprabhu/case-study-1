@@ -1,0 +1,24 @@
+# Makefile
+
+all 		: question7 question8 question9
+
+question7 	: question7.o 
+			gcc -o question7 question7.o
+
+question7.o : question7.c 
+			gcc -c -O0 -fno-dce -static -m32 -Wall question7.c 
+
+question8 	: question8.o
+			gcc -o question8 question8.o -lm
+
+question5.o : question8.c
+			gcc -c -O0 -fno-dce -static -m32 -Wall question8.c
+
+question6 	: question9.o
+			gcc -o question9 question9.o
+
+question6.o : question9.c
+			gcc -c -O0 -fno-dce -static -m32 -Wall question9.c
+
+clean: 
+			rm -rf *.o question7 question8 question9
