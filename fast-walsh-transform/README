@@ -1,0 +1,76 @@
+INTRO - Fast Walsh Theorm
+=========================
+
+Question10: 
+==========
+It is easy to do a Fast Walsh Transform by hand.  (Well, I say
+"easy," then always struggle when I actually do it.)  Let's do the
+FWT of function f: (0 0 1 0 1 1 0 0):  First note that f has a binary
+power length, as required.  Next, each pair of elements is modified
+by an "in-place butterfly"; that is, the values in each pair produce
+two results which replace the original pair, wherever they were
+originally located.  The left result will be the two values added;
+the right will be the first less the second.  That is,
+
+Method 1
+========
+orginal 	0 	0 	1	0 	1	1 	0 	0
+			^---^	^---^	^---^	^---^
+First		0 	0	1	1	2	0	0	0
+			^-------^		^-------^
+				^-------^		^-------^
+
+Second 		1	1	-1	-1	2	0	2	0
+			^---------------^
+				^---------------^
+					^---------------^
+						^---------------^
+
+Final		3 	1	-1	-1	-1	1	-3	-1
+
+Method 2
+========
+orginal 	0	0	1	0	1	1	0	0
+			^---------------^
+				^---------------^
+					^---------------^
+						^---------------^
+Third		1	1	1	0	-1	-1	1	0
+			^-------^		^-------^
+				^-------^		^-------^
+							
+Second		2	1	0	1	0	-1	-2	-1
+			^---^	^---^	^----^	^----^
+Third		3	1	1	-1	-1	1	-3	-1
+
+
+REFERENCE
+=========
+http://www.ciphersbyritter.com/ARTS/MEASNONL.HTM
+
+Question11:
+==========
+A function which implements Fast walsh algorithm.
+
+Question9:
+==========
+a function which computes the Walsh transform fˆ(a) of a 
+Boolean function f (given as a truthtable) at point a ∈ 
+F2 m. Write a function which computes fˆ(a) for all 
+a ∈ Fm 2 (it can return an array of size 2m containing 
+all the values). What is its complexity?
+
+
+COMPILE
+=======
+To compile all the C files
+$ make all
+
+To compile question11
+$ make question11
+
+To compile question13
+$ make question13
+
+To clean all the object files and binary files
+$ make clean
