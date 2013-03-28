@@ -52,7 +52,7 @@ Question11:
 ==========
 A function which implements Fast walsh algorithm.
 
-Question9:
+Question13:
 ==========
 a function which computes the Walsh transform fˆ(a) of a 
 Boolean function f (given as a truthtable) at point a ∈ 
