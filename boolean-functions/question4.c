@@ -5,11 +5,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/* A custom function to find the hamming weight of a passed argument */
+int hamming_weight (unsigned int u ) {
+	int count = 0;
+	while ( u > 0 ) {
+		if ( ( u & 1 ) == 1 ) {
+			count = count + 1;
+		}
+		u = u >> 1;
+	}
+	return count;
+}
+
+/* A function to calculate the hamming weight of each and every boolean value */
 int calculate_total_hamming_weight ( unsigned int * val ) {
 	int i, total_weight = 0;
 
 	for ( i = 0; i < 4; i++ ) {
-		total_weight += __builtin_popcount(val[i]);
+		total_weight += hamming_weight(val[i]);
 	}
 	return total_weight;
 }
