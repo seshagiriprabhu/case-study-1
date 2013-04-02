@@ -1,8 +1,5 @@
 INTRO - Fast Walsh Theorm
 =========================
-
-Question10: 
-==========
 It is easy to do a Fast Walsh Transform by hand.  (Well, I say
 "easy," then always struggle when I actually do it.)  Let's do the
 FWT of function f: (0 0 1 0 1 1 0 0):  First note that f has a binary
@@ -12,41 +9,40 @@ two results which replace the original pair, wherever they were
 originally located.  The left result will be the two values added;
 the right will be the first less the second.  That is,
 
-Method 1
-========
-orginal 	0 	0 	1	0 	1	1 	0 	0
-			^---^	^---^	^---^	^---^
-First		0 	0	1	1	2	0	0	0
-			^-------^		^-------^
-				^-------^		^-------^
-
-Second 		1	1	-1	-1	2	0	2	0
-			^---------------^
-				^---------------^
-					^---------------^
-						^---------------^
-
-Final		3 	1	-1	-1	-1	1	-3	-1
-
-Method 2
-========
+Method
+======
 orginal 	0	0	1	0	1	1	0	0
+
+Third		1 	1	-1	1	-1	-1	1	1
 			^---------------^
 				^---------------^
 					^---------------^
 						^---------------^
-Third		1	1	1	0	-1	-1	1	0
+Second		0	0	0	2	2	2	-2	0
 			^-------^		^-------^
 				^-------^		^-------^
-							
-Second		2	1	0	1	0	-1	-2	-1
+Second		0	2	0	-2	0	2	4	2
 			^---^	^---^	^----^	^----^
-Third		3	1	1	-1	-1	1	-3	-1
+Zero		2	-2	-2	2	2	-2	6	2
 
+Question10: 
+==========
+Apply this algorithm by hand on the following truth table
 
-REFERENCE
-=========
-http://www.ciphersbyritter.com/ARTS/MEASNONL.HTM
+Orginal		1	0	1	1	0	0	0	0
+
+Third		-1	1	-1	-1	1	1	1	1
+			^---------------^
+				^---------------^
+					^---------------^
+						^---------------^
+Second		0	2	0	0	-2	0	-2	-2
+			^-------^		^-------^
+				^-------^		^-------^
+First		0	2	0	-2	-4	-2	0	2
+			^---^	^---^	^---^	^---^
+Zero		0	-2	-2	2	-6	-2	2	-2
+
 
 Question11:
 ==========
