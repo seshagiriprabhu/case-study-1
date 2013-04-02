@@ -4,19 +4,20 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
 /* Function returns the indice of the first non-zero value
    in the given unsigned integer						*/
 unsigned int find_indice ( unsigned int u) {
 	unsigned int indice, temp;
 
-	for ( temp = 0; temp < sizeof (u); temp++ ) {
+	for ( temp = 0; temp < UINT_MAX; temp++ ) {
 		if ( ( ( u >> temp) & 1 ) == 1 ) {
 			indice = temp;
 			break;
 		}
 	}
-	return indice;
+	return indice + 1;
 }
 
 int main ( int argc, char ** argv ) {
