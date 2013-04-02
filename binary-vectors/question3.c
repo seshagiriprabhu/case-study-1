@@ -13,8 +13,9 @@ unsigned int count_non_zero ( unsigned int u ) {
 	unsigned int count = 0;
 
 	while ( u > 0 ) {
-		count = count + 1;
-		u = u & ( u - 1 );
+		if ( ( u & 1 ) == 1 )
+			count = count + 1;
+		u = u >> 1;
 	}
 
 	return count;
