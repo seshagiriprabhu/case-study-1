@@ -7,13 +7,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 
 unsigned int count_non_zero ( unsigned int u ) {
-	unsigned int count = 0, i;
+	unsigned int count = 0;
 
-	for ( i = 0; i < sizeof (u); i++ ) {
-		if ( ( ( u >> i ) & 1)  == 1 )
-			count++;
+	while ( u > 0 ) {
+		count = count + 1;
+		u = u & ( u - 1 );
 	}
 
 	return count;
