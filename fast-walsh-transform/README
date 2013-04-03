@@ -48,6 +48,10 @@ Question11:
 ==========
 A function which implements Fast walsh algorithm.
 
+Question12:
+===========
+The complexity of Fast Walsh algo is O(nlogn)
+
 Question13:
 ==========
 a function which computes the Walsh transform fˆ(a) of a 
