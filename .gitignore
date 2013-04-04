@@ -48,7 +48,4 @@
 
 # In-order to push only required files
 *
-!*.c
-!Makefile
-!README
-
+!*.*
