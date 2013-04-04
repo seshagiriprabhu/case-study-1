@@ -1,7 +1,6 @@
 /* Written by Giri
  * An implementation of Fast Walsh Algorithm
 */
-#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -97,9 +96,9 @@ int main ( int argc, char ** argv ) {
 	printf ("Enter the value of m : ");
 	scanf ("%d", &m);
 
-	f = ( int * ) malloc ( pow (2, m) * sizeof ( int ) );
+	f = ( int * ) malloc ( powerFunction (2, m) * sizeof ( int ) );
 
-	for ( i = 0; i < pow(2, m); i++ ) {
+	for ( i = 0; i < powerFunction (2, m); i++ ) {
 		printf ("Enter the value of [%d] of boolean funciton: ", i + 1);
 		scanf  ("%d", &f[i]);
 	}
