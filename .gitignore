@@ -45,3 +45,10 @@
 *.mtc1
 *.out
 *.synctex.gz
+
+# In-order to push only required files
+*
+!*.c
+!Makefile
+!README
+
