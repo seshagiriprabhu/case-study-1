@@ -11,6 +11,13 @@
 #include <stdlib.h>
 
 /* A function to calculate the power of a number */
+
+// Confusing name and confusing comment:
+// this function computes number * 2**(power-1)
+// (where '**' represents exponentiation).
+// In the context of Boolean functions,
+// the term "power function" means something
+// completely different
 int powerFunction ( int number, int power ) {
 	if ( power == 0 ) 
 		return 0;
@@ -19,10 +26,20 @@ int powerFunction ( int number, int power ) {
 }
 
 /* A function to invert the sign of given boolean value */
+
+// I don't really get what this function is meant for...
+// But it has the same name as a different function
+// in question8.c, so it is confusing
 int sign (int e) {
 	return powerFunction ( (float) -1, e);
 }
 
+
+// Next 2 functions: what is m? there is confusion
+// Try to reread the question & revise, and let's discuss if you
+// don't understand.
+// Also: don't do I/O in functions which should be pure!
+// Do I/O in e.g. main.
 
 void WalshTransform (int * f, int m) {
 	int i;

@@ -7,6 +7,12 @@
 #include <stdio.h>
 
 int sign (int e) {	
+    // we don't want to use pow here (which BTW uses double (not int)),
+    // it is overkill for such a simple function.
+    // An OK solution:
+    // return e ? (-1) : 1;
+    // But it involves a conditional test, which is inefficient.
+    // There is another solution based only on integer arithmetic.
 	return pow ( (float) -1, e);
 }
 
