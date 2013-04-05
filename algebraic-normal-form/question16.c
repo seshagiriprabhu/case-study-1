@@ -9,7 +9,7 @@
 int hamming_weight ( int number ) {
 	int count = 0;
 
-	while ( m > 0 ) {
+	while ( number > 0 ) {
 
 		if ( ( number & 1 ) == 1 )
 			count = count + 1;
@@ -22,11 +22,11 @@ int hamming_weight ( int number ) {
 
 /* A function to compute ANF */
 void ANF ( unsigned int * M, int m, int x ) {
-	int i, j = 0, tempMAX, index;
+	int i, j = 0, tempMAX, index = 0;
 
 	int * count, * hammingWeight;
 	count = ( int * ) malloc ( m * sizeof (m) );
-	hammingWeight ( int * ) malloc ( m * sizeof (m) );
+	hammingWeight = ( int * ) malloc ( m * sizeof (m) );
 
 	for ( i = 0; i < m; i++ ) {
 		if ( M[i] == 1 )
@@ -44,7 +44,7 @@ void ANF ( unsigned int * M, int m, int x ) {
 	tempMAX =hammingWeight[0];
 	for ( i = 0; i < m; i++ ) {
 		if ( tempMAX < hammingWeight[i] ) {
-			tempMAX = hammingWeight;
+			tempMAX = hammingWeight[i];
 			index = i + 1;
 		}
 	}
@@ -63,6 +63,8 @@ void ANF ( unsigned int * M, int m, int x ) {
 		printf ("+");
 		j = 0;
 	}
+
+	printf ("The maximum degree of given boolean function is %d\n", index);
 }
 
 int main ( int argc, char ** argv ) {
@@ -75,8 +77,8 @@ int main ( int argc, char ** argv ) {
 	M = ( unsigned int * ) malloc ( m * sizeof ( unsigned int) );
 
 	for ( i = 0; i < m; i++ ) {
-		printf ("Enter the value of [%d]th boolean function: ");
+		printf ("Enter the value of [%d]th boolean function: ", i + 1);
 		scanf ("%du", &M[i]);
 	}
-
+	return 0;
 }
