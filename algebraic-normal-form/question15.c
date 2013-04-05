@@ -8,10 +8,10 @@
 /* A function to evaluate a Monomial */
 void monomial_eval ( unsigned int M, int x ) {
 	if ( ( M >> x ) & 1 )
-		printf ("Given variables can be represented by the monomial %d\n", M);
+		printf ("%d is a variable of the given monomial %d\n", x, M);
 
 	else
-		printf ("Given variables cannot be represented by the monomial %d\n", M);	
+		printf ("%d is not a variable of the given  monomial %d\n", x, M);	
 }
 	
 
