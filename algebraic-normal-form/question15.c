@@ -53,7 +53,7 @@ int main ( int argc, char ** argv ) {
 	scanf ("%du", &M);
 
 	printf ("Enter the integer (X): ");
-	scanf ("%d", x);
+	scanf ("%d", &x);
 
 	monomial_eval (M, x);
 	return 0;
