@@ -23,7 +23,7 @@ void monomial_degree ( unsigned int * M, int m ) {
 	int i;
 
 	for ( i = 0; i < m; i++ ) 
-		printf ("The hamming wieght of [%d] is %d\n", M[i], hamming_weight (M[i]));
+		printf ("The monomial degree of [%d] is %d\n", M[i], hamming_weight (M[i]));
 
 }
 
