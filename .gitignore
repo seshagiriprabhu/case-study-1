@@ -45,3 +45,12 @@
 *.mtc1
 *.out
 *.synctex.gz
+binary-vectors/question1
+binary-vectors/question2
+binary-vectors/question3
+boolean-functions/question4
+boolean-functions/question5
+boolean-functions/question6
+walsh-transform/question7
+walsh-transform/question8
+walsh-transform/question9
