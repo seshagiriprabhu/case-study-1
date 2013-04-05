@@ -9,6 +9,7 @@
 #include <stdlib.h>
 
 /* A function to calculate the hamming weight */
+// DRY! we need to organize code in order to DRY
 int hamming_weight (unsigned value) {
 	int count = 0;
 
@@ -23,10 +24,20 @@ int hamming_weight (unsigned value) {
 
 /* A function which check whether the boolean functions are balanced
  * or not */
+
+// this function is unusable: what if I want to check the balancedness of
+// millions functions? this kind of function *should never* do I/O
+// (input/ouput), but return a useful value
+// (boolean (true/false) value in this case).
+// after all, you don't scanf the values of f and m from
+// inside the function...
 void is_balanced (unsigned int * f, int m) {
 	int i, count = 0;
 
 	for ( i = 0; i < m; i++) {
+            // same remark as before. It could be right if you
+            // had optimized the representation of a truthtable,
+            // using all bits of all values of the array f...
 		count += hamming_weight (f[i]);
 	}
 
@@ -52,6 +63,7 @@ int main ( int argc, char ** argv ) {
 
 
 	for ( i = 0; i < m; i++ ) {
+            // I don't think you should write 'i+1' ...
 		printf ("Enter the value of bool[%d]: ", i + 1);
 		scanf ("%du", &f[i]);
 	}

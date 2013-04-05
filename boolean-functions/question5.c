@@ -5,6 +5,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// comment your function: what is m?
+// in the pdf, m was meant to be the number of variables,
+// so we don't need to check that the input is a power of 2.
 int hamming_distance ( unsigned int * f1, unsigned int * f2, int m ) {
 	int i, count = 0;
 	for ( i = 0; i < m; i++ ) {

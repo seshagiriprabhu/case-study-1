@@ -8,9 +8,16 @@
 
 /* Function returns the indice of the first non-zero value
    in the given unsigned integer						*/
+
+// why not use type "unsigned long"?
+// I guess it is of same size on your machine.
+// On 64-bit architectures, (unsigned) int is usually 32 bits
+// whereas (unsigned) long is 64 bits (native ints), so
+// long is preferred.
 unsigned int find_indice ( unsigned int u) {
 	unsigned int indice, temp;
 
+        // why do you choose the name 'temp'?
 	for ( temp = 0; temp < UINT_MAX; temp++ ) {
 		if ( ( ( u >> temp) & 1 ) == 1 ) {
 			indice = temp;
