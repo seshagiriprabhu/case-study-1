@@ -18,6 +18,20 @@ int hamming_weight ( unsigned int M ) {
 	return count;
 }
 
+/* A function to calculate the power of a given integer */
+int powerFunction ( int number, int power ) { 
+	if ( power == 0 )
+		return 1;
+
+	else
+		return number << ( power - 1 );
+}
+
+/* A function to evaluate a Monomial */
+void monomial_eval ( unsigned int M, int x ) {
+	int  degree = hamming_weight (M);
+}
+
 int main ( int argc, char ** argv ) {
 	return 0;
 }
