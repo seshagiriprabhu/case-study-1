@@ -58,3 +58,10 @@ Question 15
 Write a function monomial_eval(M, x) which evaluates a monomial M at point x ∈ (F2)^2
 
 The solution checks whether x is a variable of the given monomial
+
+Question 16
+===========
+Implement a function taking an ANF (in the form of an array) as input, which computes its
+degree, i.e. the maximum degree of its monomials (for example, the degree of x0 + (x1)*(x2) is 2).
+
+
