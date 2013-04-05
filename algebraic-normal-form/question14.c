@@ -19,8 +19,11 @@ int hamming_weight ( unsigned int M ) {
 }
 
 /* A function to implement the monomial degree */
-void monomial_degree ( unsigned int M, int m ) {
+void monomial_degree ( unsigned int * M, int m ) {
 	int i;
+
+	for ( i = 0; i < m; i++ ) 
+		printf ("The hamming wieght of [%d] is %d", M[i], hamming_weight (M[i]));
 
 }
 
