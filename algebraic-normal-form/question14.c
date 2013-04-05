@@ -15,6 +15,7 @@ int hamming_weight ( unsigned int M ) {
 
 		M = M >> 1;
 	}
+
 	return count;
 }
 
