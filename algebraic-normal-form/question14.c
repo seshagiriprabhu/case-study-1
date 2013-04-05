@@ -5,24 +5,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* A function to find the power of a given number */
-int powerFunction ( int number, int power ) {
-	if ( power == 0 )
-		return 0;
-	else 
-		return number << ( power - 1 );
-}
-
 /* A function to implement the monomial degree */
-int monomial_degree ( unsigned int * M ) {
-	int i, count = 0;
+void monomial_degree ( unsigned int M, int m ) {
+	int i;
 
-	for ( i = 0; i < sizeof (M); i++ ) {
-
-	}
 }
 
 int main ( int argc, char ** argv ) {
+	unsigned int * M;
+	int m, i;
+
+	printf ("Enter the number of variables in the monomial: ");
+	scanf ("%d", &m);
+
+	M = ( unsigned int * ) malloc ( m * sizeof ( unsigned int ) );
+
+	for ( i = 0; i < m; i++) {
+		printf ("Enter the [%d] monomial: ", i + 1);
+		scanf ("%du", &M[i]);
+	}
+	
+	monomial_degree(M, m);
+	free(M);
 	return 0;
 }
 
