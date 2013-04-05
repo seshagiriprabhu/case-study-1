@@ -22,11 +22,12 @@ int hamming_weight ( int number ) {
 
 /* A function to compute ANF */
 void ANF ( unsigned int * M, int m, int x ) {
-	int i;
+	int i, j = 0, tempMAX, index;
 
-	int * count;
+	int * count, * hammingWeight;
 	count = ( int * ) malloc ( m * sizeof (m) );
-	
+	hammingWeight ( int * ) malloc ( m * sizeof (m) );
+
 	for ( i = 0; i < m; i++ ) {
 		if ( M[i] == 1 )
 			count[i] = i + 1;
@@ -37,8 +38,31 @@ void ANF ( unsigned int * M, int m, int x ) {
 
 	for ( i = 0; i < m; i++ ) {
 		if ( count[i] > 1 )
+			hammingWeight[i] = hamming_weight (count[i]);
 	}
-		
+
+	tempMAX =hammingWeight[0];
+	for ( i = 0; i < m; i++ ) {
+		if ( tempMAX < hammingWeight[i] ) {
+			tempMAX = hammingWeight;
+			index = i + 1;
+		}
+	}
+	
+	printf ("This boolean function: ");
+	for ( i = 0; i < m; i++ ) {
+
+		while ( hammingWeight[i] > 0 ) {
+
+			if ( ( hammingWeight[i] & 1 )  == 1 )
+				printf ("x%d ", j);
+
+			j = j + 1;
+		}
+
+		printf ("+");
+		j = 0;
+	}
 }
 
 int main ( int argc, char ** argv ) {
