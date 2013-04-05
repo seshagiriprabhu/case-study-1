@@ -1,7 +1,6 @@
 /* Written by Giri
  * An implementation of Fast Walsh Algorithm
 */
-#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -12,6 +11,11 @@ int powerFunction ( int number, int power ) {
 
 	number = number << (power - 1 );
 	return number;
+}
+
+/* A function which inverts the sign of the given boolean function */
+int sign (int e) {
+	return powerFunction(-1, e);
 }
 
 /* A function to computer the FastWalshTransform */
@@ -28,16 +32,8 @@ void FastWalshTransform ( int * f, int m ) {
 	printf ("\n--------------------------------------------------------------------------------\n");
 	
 	/* Replaces all the values of the function by their sign */
-	for ( u = 0; u < powerFunction (2, m); u++ ) {
-
-		if ( f[u] == 0 ) 
-			f[u] = 1;
-	
-		else 
-			f[u] = -1;
-
-		temp_f[u] = f[u];
-	}
+	for ( u = 0; u < powerFunction (2, m); u++ ) 
+		temp_f[u] = f[u] = sign(f[u]);
 
 	/* Prints the initial reverse sign boolean values */
 	printf ("%d\t|\t", temp);
@@ -100,12 +96,13 @@ int main ( int argc, char ** argv ) {
 	printf ("Enter the value of m : ");
 	scanf ("%d", &m);
 
-	f = ( int * ) malloc ( pow (2, m) * sizeof ( int ) );
+	f = ( int * ) malloc ( powerFunction (2, m) * sizeof ( int ) );
 
-	for ( i = 0; i < pow(2, m); i++ ) {
+	for ( i = 0; i < powerFunction (2, m); i++ ) {
 		printf ("Enter the value of [%d] of boolean funciton: ", i + 1);
 		scanf  ("%d", &f[i]);
 	}
+
 	FastWalshTransform (f, m);
 	free (f);
 	return 0;

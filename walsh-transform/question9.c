@@ -10,9 +10,19 @@
 #include <math.h>
 #include <stdlib.h>
 
-int sign (int e) {
-	return pow ( (float) -1, e);
+/* A function to calculate the power of a number */
+int powerFunction ( int number, int power ) {
+	if ( power == 0 ) 
+		return 0;
+	else
+		return ( number << ( power - 1 ) );
 }
+
+/* A function to invert the sign of given boolean value */
+int sign (int e) {
+	return powerFunction ( (float) -1, e);
+}
+
 
 void WalshTransform (int * f, int m) {
 	int i;
@@ -25,9 +35,9 @@ void WalshTransform (int * f, int m) {
 void completeWalshTransform ( int * f, int * a, int m) {
 	int i;
 	printf ("Complete walsh transform (f^(a) = Sigma (-1)^(f(x) + a.x) of a boolean function f:\n");
-	for ( i = 0; i < m; i++ ) {
+
+	for ( i = 0; i < m; i++ ) 
 		printf ("%d\n", sign (f[i] + ( a[i] * i)));
-	}
 }
 
 int main ( int argc, char ** argv ) {

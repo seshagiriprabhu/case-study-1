@@ -1,1 +1,7 @@
-This is README
+Case Study
+==========
+
+This is a repository related to my master's degree case study.
+
+It mainly contains implementation of binary vectors, boolean functions,
+walsh transformation, fast walsh transformation and algebraic normal form.
