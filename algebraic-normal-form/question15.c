@@ -7,8 +7,6 @@
 
 /* A function to evaluate a Monomial */
 void monomial_eval ( unsigned int M, int x ) {
-	int i, tempx = 0;
-
 	if ( ( M >> x ) & 1 )
 		printf ("Given variables can be represented by the monomial %d\n", M);
 
@@ -19,7 +17,6 @@ void monomial_eval ( unsigned int M, int x ) {
 
 int main ( int argc, char ** argv ) {
 	unsigned int M;
-	int i, var;
 	int x;
 
 	printf ("Enter the monomial: ");
