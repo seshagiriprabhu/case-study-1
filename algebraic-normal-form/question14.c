@@ -23,7 +23,7 @@ void monomial_degree ( unsigned int * M, int m ) {
 	int i;
 
 	for ( i = 0; i < m; i++ ) 
-		printf ("The hamming wieght of [%d] is %d", M[i], hamming_weight (M[i]));
+		printf ("The hamming wieght of [%d] is %d\n", M[i], hamming_weight (M[i]));
 
 }
 
@@ -31,7 +31,7 @@ int main ( int argc, char ** argv ) {
 	unsigned int * M;
 	int m, i;
 
-	printf ("Enter the number of variables in the monomial: ");
+	printf ("How many monomial degrees you want to calculate: ");
 	scanf ("%d", &m);
 
 	M = ( unsigned int * ) malloc ( m * sizeof ( unsigned int ) );
