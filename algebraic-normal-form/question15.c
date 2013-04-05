@@ -29,10 +29,33 @@ int powerFunction ( int number, int power ) {
 
 /* A function to evaluate a Monomial */
 void monomial_eval ( unsigned int M, int x ) {
-	int  degree = hamming_weight (M);
+	int tempx = 0;
+	int degree = hamming_weight (M);
+
+	while ( degree > -1 ) {
+		tempx = tempx + powerFunction (2, degree);
+		degree = degree - 1;
+	}
+
+	if ( tempx == x )
+		printf ("Given integer X (i.e %d) can be represented by the monomial %d\n", x, M);
+
+	else
+		printf ("Given integer X (i.e %d) cannot be represented by the monomial %d\n", x, M);	
 }
+	
 
 int main ( int argc, char ** argv ) {
+	unsigned int M;
+	int x;
+
+	printf ("Enter the monomial: ");
+	scanf ("%du", &M);
+
+	printf ("Enter the integer (X): ");
+	scanf ("%d", x);
+
+	monomial_eval (M, x);
 	return 0;
 }
 
