@@ -18,12 +18,18 @@ unsigned int find_indice ( unsigned int u) {
 	unsigned int indice, temp;
 
         // why do you choose the name 'temp'?
+        // UINT_MAX is an improvement over previous version, but it is far
+        // from optimal! (maybe it is even UB (undefined behaviour) - even if
+        // I think it is defined for gcc - when shifting u for u == 0
 	for ( temp = 0; temp < UINT_MAX; temp++ ) {
 		if ( ( ( u >> temp) & 1 ) == 1 ) {
 			indice = temp;
 			break;
 		}
 	}
+        // I think you should return indice, the user knows that indices
+        // start at 0.
+        // what is the value of indice for u == 0??
 	return indice + 1;
 }
 
