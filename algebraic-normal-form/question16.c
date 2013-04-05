@@ -5,6 +5,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/* A function to find the hamming weight */
+int hamming_weight ( int number ) {
+	int count = 0;
+
+	while ( m > 0 ) {
+
+		if ( ( number & 1 ) == 1 )
+			count = count + 1;
+
+		number = number >> 1;
+	}
+
+	return count;
+}
+
 /* A function to compute ANF */
 void ANF ( unsigned int * M, int m, int x ) {
 	int i;
