@@ -56,3 +56,5 @@ The degree of a monomial function is
 Question 15
 ===========
 Write a function monomial_eval(M, x) which evaluates a monomial M at point x ∈ (F2)^2
+
+The solution checks whether x is a variable of the given monomial
