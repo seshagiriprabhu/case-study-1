@@ -5,6 +5,13 @@
 #include <stdlib.h>
 
 /* A custom function to find the power of a given number */
+
+// Again DRY. The problem is even worse as it is *almost*
+// the same as powerFunction from question9.c
+
+// In this file, you only use powerFunction with number == 2 (which computes 2**number)
+// so you should simply define a function called e.g. unsigned pow2(int m)
+// which returns (1u<<m);
 int powerFunction ( int number, int power ) {
 	if ( power == 0 )
 		return 1;
@@ -14,11 +21,20 @@ int powerFunction ( int number, int power ) {
 }
 
 /* A function which inverts the sign of the given boolean function */
+// Ditto; this function seems to work, but I think powerFunction is intended
+// to work with number >= 0. From the definition, I interpret
+// powerFunction(-1, e) as (-1) * 2**(e-1), which does not really make sense...
+// your function works for e==0 because of the special condition in powerFunction,
+// and for e==1 because then powerFunction(x, e) == x for all x.
 int sign (int e) {
 	return powerFunction(-1, e);
 }
 
 /* A function to computer the FastWalshTransform */
+// It works. Now write a pure function, which returns
+// a new array containing the walsh transform
+// (or better: which takes an array as a parameter where it puts
+// the walsh transform values).
 void FastWalshTransform ( int * f, int m ) {
 	int * temp_f;
 	temp_f = ( int * ) malloc ( powerFunction (2, m) * sizeof(int) );
@@ -46,11 +62,14 @@ void FastWalshTransform ( int * f, int m ) {
 
 	temp = temp - 1;
 	while ( temp > -1 ) {	
+            // split is then equal to powerFunction(2, temp), right??
 		split = powerFunction (2, m) / ( powerFunction (2, m) / powerFunction (2, temp) );
 		tempSplit = split;
 
 		printf ("%d\t|\t", temp);	
 
+                // this algo below, with tempSplit and count, and with
+                // "% powerFunction (2, m)", seems over-complicated. There is a simpler solution.
 		for ( u = 0; u < powerFunction (2, m); u = u + split ) {
 			for ( j = u; j < u + split; j++ ) {
 

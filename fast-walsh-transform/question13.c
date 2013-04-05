@@ -25,16 +25,24 @@ int hamming_weight ( unsigned int u ) {
 	return count;
 }
 
+// I did not read the 2 previous function...
+
 /* A function to calculate the non-linerity of given boolean funciton  */
 void nonlinearity ( unsigned int * u, int m ) {
 	int hammingWeight, i, count = 0;
+        // maybe you could "cache" the value 2**m,
+        // with e.g. unsigned int n = 1u<<m;
 
 	for ( i = 0; i < powerFunction (2, m); i++ ) {
 		hammingWeight = hamming_weight (u[i]);
+                // here, u[i] contains only 0 or 1, so why take its hamming_weight?
 		if ( hammingWeight > 0 )
 			count = count + 1;
 	}
 	
+        // I don't read in detail what you mean below, but it is not correct.
+        // You should of course use the function from question 11 (which remains to
+        // be written...), which computes the table of the values of the walsh transform.
 	if ( ( count - ( powerFunction (2, m) / 2 ) ) < 0 )
 		printf ("1 Nonlinerity is %d\n", ( ( powerFunction (2, m) / 2 )- count ));
 
