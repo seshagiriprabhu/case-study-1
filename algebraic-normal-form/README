@@ -39,6 +39,8 @@ in the product) is 3.
 Question 14
 ===========
 What is the link between the degree of a monomial and the integer which represents it?
+Degree of monomial is number of variables in the given monomial. 
+
 Implement a function monomial_degree(M) which computes the degree of a monomial, given as an integer.
 
 
