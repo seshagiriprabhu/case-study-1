@@ -5,6 +5,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/* A function to calculate the hamming weight */
+void hamming_weight ( unsigned int M ) {
+	int count = 0;
+
+	while ( M > 0 ) {
+		if ( ( M & 1 ) == 1 )
+			count = count + 1;
+
+		M = M >> 1;
+	}
+}
+
 /* A function to implement the monomial degree */
 void monomial_degree ( unsigned int M, int m ) {
 	int i;
