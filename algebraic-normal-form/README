@@ -1,0 +1,44 @@
+Algebraic Normal Form
+=====================
+A Boolean function can be uniquely represented as a polynomial in F2[x0 , . . . , xm−1 ], called its ANF. To
+be more exact, the representation is unique as long as the relative degree in each variable is at most 1 (see
+below)
+
+Let’s first define coordinate functions, denoted (temporarily) by Xi :
+	Xi : 		F^m2 				−→ F2
+   (x0, . . . , xi , . . . , xm−1) 	−→ xi
+
+In this notation, xi represents a bit in F2, while Xi is a Boolean function. Boolean functions can be
+(Fm ) multiplied : the set F2 2 of all Boolean functions in m variables is a group for the multiplication, which is
+obviously defined as (f ∗ g)(x) = f (x) ∗ g(x). So we can multiply coordinate functions, e.g. X1 ∗ X3 ∗ X4 .
+According to the laws of multiplication in F2, for each i, we have Xi ∗ Xi = Xi (check it). We generally omit
+the ∗ operator, and write Xi in lower case, so that the function X1 ∗ X3 ∗ X4 will be written as x1 x3 x4 , which
+can be also be seen as a formal polynomial. A boolean function which is the product of coordinate functions
+is called a monomial. The sum of monomials (which is again a Boolean function, the addition being defined
+the same way as the multiplication, i.e. (f + g)(x) = f (x) + g(x)) is called a polynomial. The representation
+f a Boolean function as a polynomial is called its ANF : each Boolean function admits exactly one ANF
+representation (the proof is not too difficult). Here is an example of how to compute the truthtable of a
+polynomial, x0*x1 + x1 :
+
+( x0, x1 ) 	| ( x0 * x1 )	( x0 * x1 ) + x1
+--------------------------------------------
+ ( 0, 0 )	|		0			0
+ ( 1, 0 )	|		0			0	
+ ( 0, 1 )	|		0			1
+ ( 1, 1 )	|		1			0
+
+ A monomial M can be written in the following way :
+ M (x0, x1, x2 ....., xm-1) = (x0)^(u0) * (x1)^(u1) * ...... (x(m-1))^(u(m-1))
+
+ui uiwhere ui is in F2, and xi^(ui)= xi if ui = 1 and xi^(ui) = 1 if ui = 0. So M is uniquely determined by the 
+coefficients u0, . . . , um−1 , and hence by the integer u = u0 + (2)u1 + (2^2)u2 + · · · + (2m−1)*u(m−1). 
+For example, the monomial x1 x3 x4 is represented by the integer 2 + 2^3 + 2^4 = 26. The monomial 1 (equal to 
+1 for each input) corresponds to the integer 0. Its degree (the number of terms (different from 1) which appear 
+in the product) is 3.
+
+Question 14
+===========
+What is the link between the degree of a monomial and the integer which represents it?
+Implement a function monomial_degree(M) which computes the degree of a monomial, given as an integer.
+
+
