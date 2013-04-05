@@ -14,27 +14,32 @@
 // On 64-bit architectures, (unsigned) int is usually 32 bits
 // whereas (unsigned) long is 64 bits (native ints), so
 // long is preferred.
-unsigned int find_indice ( unsigned int u) {
-	unsigned int indice, temp;
 
-        // why do you choose the name 'temp'?
-        // UINT_MAX is an improvement over previous version, but it is far
-        // from optimal! (maybe it is even UB (undefined behaviour) - even if
-        // I think it is defined for gcc - when shifting u for u == 0
-	for ( temp = 0; temp < UINT_MAX; temp++ ) {
-		if ( ( ( u >> temp) & 1 ) == 1 ) {
-			indice = temp;
+int find_indice ( unsigned long u) {
+	int indice = 0;
+
+	if ( u == 0 )
+		return 0;
+
+    // why do you choose the name 'temp'?	
+    // UINT_MAX is an improvement over previous version, but it is far
+    // from optimal! (maybe it is even UB (undefined behaviour) - even if
+    // I think it is defined for gcc - when shifting u for u == 0
+	while ( u > 0 ) {
+		if ( ( u  & 1 ) == 1 ) 
 			break;
-		}
+
+		indice = indice + 1;
+		u = u >> 1;
 	}
         // I think you should return indice, the user knows that indices
         // start at 0.
         // what is the value of indice for u == 0??
-	return indice + 1;
+	return indice;
 }
 
-int main ( int argc, char ** argv ) {
-	unsigned int u;
+int main ( int argc, char **argv ) {
+	unsigned long u;
 	int choice;
 	do {
 		printf ("=====================================================\n");
@@ -46,7 +51,7 @@ int main ( int argc, char ** argv ) {
 
 		switch ( choice ) {
 			case 1: printf ("Enter the integer: ");
-					scanf ("%du", &u);
+					scanf ("%lu", &u);
 
 					if ( u > 0 )
 						printf ("The indice of the first non-zero number is %d \n", find_indice (u));
