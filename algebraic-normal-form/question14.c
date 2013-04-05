@@ -6,7 +6,7 @@
 #include <stdlib.h>
 
 /* A function to calculate the hamming weight */
-void hamming_weight ( unsigned int M ) {
+int hamming_weight ( unsigned int M ) {
 	int count = 0;
 
 	while ( M > 0 ) {
@@ -15,6 +15,7 @@ void hamming_weight ( unsigned int M ) {
 
 		M = M >> 1;
 	}
+	return count;
 }
 
 /* A function to implement the monomial degree */
