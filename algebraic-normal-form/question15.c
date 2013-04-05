@@ -28,32 +28,37 @@ int powerFunction ( int number, int power ) {
 }
 
 /* A function to evaluate a Monomial */
-void monomial_eval ( unsigned int M, int x ) {
-	int tempx = 0;
-	int degree = hamming_weight (M);
-
-	while ( degree > -1 ) {
-		tempx = tempx + powerFunction (2, degree);
-		degree = degree - 1;
-	}
-
-	if ( tempx == x )
-		printf ("Given integer X (i.e %d) can be represented by the monomial %d\n", x, M);
+void monomial_eval ( unsigned int M, int * x ) {
+	int i, tempx = 0;
+	
+	for ( i = 0; i < ( sizeof (x) / sizeof (int) ); i++ ) 
+		tempx = tempx + powerFunction (2, x[i]);
+	
+	if ( tempx == M )
+		printf ("Given variables can be represented by the monomial %d\n", M);
 
 	else
-		printf ("Given integer X (i.e %d) cannot be represented by the monomial %d\n", x, M);	
+		printf ("Given variables cannot be represented by the monomial %d\n", M);	
 }
 	
 
 int main ( int argc, char ** argv ) {
 	unsigned int M;
-	int x;
+	int i, var;
+	int * x;
 
 	printf ("Enter the monomial: ");
 	scanf ("%du", &M);
 
-	printf ("Enter the integer (X): ");
-	scanf ("%d", &x);
+	printf ("Enter the number of variables: ");
+	scanf ("%d", &var);
+
+	x = ( int * ) malloc ( var * sizeof ( int ) );
+
+	for ( i = 0; i < var; i++ ) {
+		printf ("Enter the [%d] variable suffix: ", i + 1);
+		scanf ("%d", &x[i]);
+	}
 
 	monomial_eval (M, x);
 	return 0;
