@@ -39,8 +39,20 @@ in the product) is 3.
 Question 14
 ===========
 What is the link between the degree of a monomial and the integer which represents it?
-Degree of monomial is number of variables in the given monomial. 
+Degree of monomial is number of variables in the given monomial.
+If we have number 26 its binary representation is 
+
+00000000 00011010
+         ^^^^^^^^
+		 76543210
+		    -- -
+No of variables = 3 (no of 1's in the binary of given monomial )
+
+variable formuala = x4*x3*x1 => ( 2^4 + 2^3 + 2^1  = 26 )
 
 Implement a function monomial_degree(M) which computes the degree of a monomial, given as an integer.
+The degree of a monomial function is 
 
-
+Question 15
+===========
+Write a function monomial_eval(M, x) which evaluates a monomial M at point x ∈ (F2)^2
