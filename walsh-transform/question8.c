@@ -3,23 +3,18 @@
  * (−1)0 = 1 and (−1)1 = −1. Implement this
  * function (int sign(int e) in C) */
 
-#include <math.h>
-#include <stdio.h>
+#include "header.h"
 
-int sign (int e) {	
-    // we don't want to use pow here (which BTW uses double (not int)),
-    // it is overkill for such a simple function.
-    // An OK solution:
-    // return e ? (-1) : 1;
-    // But it involves a conditional test, which is inefficient.
-    // There is another solution based only on integer arithmetic.
-	return pow ( (float) -1, e);
-}
-
-int main ( int argc, char ** argv ) {
+int main () {
 	int value;
 	printf ("Enter the value: ");
 	scanf ("%d", &value);
-	printf ("The sign(%d), is : %d\n", value, sign(value));
+
+	if ( value !=0 && value != 1 ) {
+		printf ("Program accepts only binary values [0/1]\n");
+		exit(0);
+	}
+
+	printf ("The sign(%d), is : %d\n", value, sign(value)); /* sign function is defined in header.h */
 	return 0;
 }
