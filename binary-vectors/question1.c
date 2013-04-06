@@ -2,8 +2,7 @@
    A function taking as inputs an integer u (viewed as a binary vector)
    and an integer i, which returns the i-th bit of u */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "header.h"
 
 /* This function checks whether the first binary is position is 0 or 1 */
 void check_first_bit ( unsigned int bit ) {
