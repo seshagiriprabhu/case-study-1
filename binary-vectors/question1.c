@@ -16,7 +16,7 @@ int check_random_bit ( unsigned int bit, int i ) {
 	return temp;
 }
 
-int main ( int argc, char ** argv ) {
+int main () {
 	unsigned int u;
 	int i, choice;
 	do {

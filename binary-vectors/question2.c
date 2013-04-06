@@ -36,7 +36,7 @@ int find_indice ( unsigned long u) {
 	return indice;
 }
 
-int main ( int argc, char **argv ) {
+int main () {
 	unsigned long u;
 	int choice;
 	do {

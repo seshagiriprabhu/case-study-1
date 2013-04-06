@@ -7,7 +7,7 @@
 
 #include "header.h"
 
-int main ( int argc, char ** argv ) {
+int main () {
 	unsigned long u;
 	int choice;
 	do {
