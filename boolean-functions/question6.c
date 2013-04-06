@@ -7,8 +7,6 @@
 
 #include "header.h"
 
-/* A function to calculate the hamming weight */
-// DRY! we need to organize code in order to DRY
 
 /* A function which check whether the boolean functions are balanced
  * or not */
@@ -19,13 +17,10 @@
 // (boolean (true/false) value in this case).
 // after all, you don't scanf the values of f and m from
 // inside the function...
-UL is_balanced (UL * f, UL m) {
+UL is_balanced (UL *f, UL m) {
 	UL i, count = 0;
 
 	for ( i = 0; i < pow2 (m); i++) {
-            // same remark as before. It could be right if you
-            // had optimized the representation of a truthtable,
-            // using all bits of all values of the array f...
 		if ( f[i] == 1 )
 			count = count + 1;
 	}
@@ -33,7 +28,7 @@ UL is_balanced (UL * f, UL m) {
 }
 
 int main () {
-	UL * f;
+	UL *f;
 	UL m, i, count;
 	printf ("Enter the value of m: ");
 	scanf ("%lu", &m);
@@ -49,7 +44,6 @@ int main () {
             // I don't think you should write 'i+1' ..
 		printf ("Enter the [%lu] boolean value of the boolean function: ", i);
 		scanf ("%lu", &f[i]);
-
 		if ( f[i] != 0 && f[i] != 1 ) {
 			printf ("Only boolean values [0/1] is allowed\n");
 			i = i - 1;
@@ -62,5 +56,6 @@ int main () {
 	else
 		printf ("The given boolean function is not balanced\n");
 
+	free(f)
 	return 0;
 }
