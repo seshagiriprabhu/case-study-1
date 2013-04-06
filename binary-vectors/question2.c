@@ -2,9 +2,7 @@
    A function returning the indice of the first non-zero 
    bit of a binary vector */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <limits.h>
+#include "header.h"
 
 /* Function returns the indice of the first non-zero value
    in the given unsigned integer						*/
