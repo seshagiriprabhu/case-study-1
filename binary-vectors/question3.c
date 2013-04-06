@@ -25,11 +25,10 @@ int main () {
 			
 			case 2: printf ("Enter the binary vector: ");
 					scanf ("%lu", &u);
-
 					if ( u == 0 )
 						printf ("There isn't any non-zero values in your binary vector\n");
 					else
-						printf ("The Number of 1s in your binary vector is : %d\n", hamming_weight(u));
+						printf ("The Number of 1s in your binary vector is : %lu\n", hamming_weight(u));
 			break;
 
 			case 3: printf ( "==========================================\n");
