@@ -17,4 +17,11 @@ int hamming_weight ( unsigned long u ) {
 	return count;
 }
 
+unsigned int pow2 ( int power ) {
+	if ( power == 0 )
+		return 1;
+
+	return 2 << (power - 1);
+}
+
 #endif
