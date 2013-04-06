@@ -17,7 +17,8 @@ int table_hamming_weight ( unsigned long * val, int m ) {
         // but your function should be general (to be usable in the real world)
 	for ( i = 0; i < pow2 (m); i++ ) {
             // why add hamming_weight(val[i])? what values can be in val[i]?
-		total_weight += hamming_weight(val[i]);
+		if ( val[i] == 1 )
+			total_weight  = total_weight + 1;
 	}
 	return total_weight;
 }
