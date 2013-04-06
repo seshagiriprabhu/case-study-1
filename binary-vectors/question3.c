@@ -5,7 +5,7 @@
    int __builtin_popcount (unsigned int x), which will return 
    the number of non-zero values in the given unsigned int */
 
-#include "../header/header.h" /*FIX THIS: make it #include <header.h> */
+#include "header.h"
 
 int main ( int argc, char ** argv ) {
 	unsigned long u;
