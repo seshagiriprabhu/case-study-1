@@ -5,24 +5,10 @@
    int __builtin_popcount (unsigned int x), which will return 
    the number of non-zero values in the given unsigned int */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <limits.h>
-
-unsigned int hamming_weight ( unsigned int u ) {
-	unsigned int count = 0;
-
-	while ( u > 0 ) {
-		if ( ( u & 1 ) == 1 )
-			count = count + 1;
-		u = u >> 1;
-	}
-
-	return count;
-}
+#include "../header/header.h" /*FIX THIS: make it #include <header.h> */
 
 int main ( int argc, char ** argv ) {
-	unsigned int u;
+	unsigned long u;
 	int choice;
 	do {
 		printf ( "==========================================\n");
@@ -33,12 +19,12 @@ int main ( int argc, char ** argv ) {
 		scanf ("%d", &choice);
 		switch ( choice ) {
 			case 1: printf ("Enter the binary vector: ");
-					scanf ("%du", &u);
+					scanf ("%lu", &u);
 					printf ("The Number of 1s in your binary vector is : %d\n", __builtin_popcount(u));
 			break;
 			
 			case 2: printf ("Enter the binary vector: ");
-					scanf ("%du", &u);
+					scanf ("%lu", &u);
 
 					if ( u == 0 )
 						printf ("There isn't any non-zero values in your binary vector\n");
