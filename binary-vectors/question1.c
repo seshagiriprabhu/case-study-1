@@ -28,7 +28,6 @@ int main () {
 		printf ("Enter your choice: ");
 		scanf  ("%d", &choice);
 
-
 		switch ( choice ) {
 			case 1: printf ("Enter the integer: ");
 					scanf ("%du", &u);
