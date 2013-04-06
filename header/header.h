@@ -1,13 +1,20 @@
 #ifndef HEADER_H
 #define HEADER_H
 
+/*-----------Standard header files------------*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <limits.h>
 
-int hamming_weight ( unsigned long u ) {
-	unsigned long count = 0;
+/*------------------Macros--------------------*/
+#define UL unsigned long
+
+/*-----------------Functions------------------*/
+
+/* A function to calculate the hamming weight of a given number */
+UL hamming_weight ( unsigned long u ) {
+	UL count = 0;
 
 	while ( u > 0 ) {
 		if ( ( u & 1) == 1 )
@@ -17,7 +24,7 @@ int hamming_weight ( unsigned long u ) {
 	return count;
 }
 
-unsigned int pow2 ( int power ) {
+UL pow2 ( int power ) {
 	if ( power == 0 )
 		return 1;
 
