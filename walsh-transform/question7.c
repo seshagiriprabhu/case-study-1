@@ -2,33 +2,40 @@
  * A function which computes the scalar product between two vectors
  * of f2^m given as integers */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "header.h"
 
-int main ( int argc, char ** argv ) {
-	unsigned int * table_f1;
-	unsigned int * table_f2;
-	int i, j, m, product = 0;
+int main () {
+	UL *table_f1;
+	UL *table_f2;
+	UL i, j, m; /* M --> Number of variables in the boolean function */
 	
-	printf ("Enter the value of m: ");
-	scanf ("%d", &m);
+	printf ("Enter the number of variables in the boolean function: ");
+	scanf ("%lu", &m);
 
         // here m is the number of variables... the two input vectors are of dimension m
-        // which can be assumed to be < 32, and are represented by an unsigned int
+        // which can be assumed to be < 32, and are represented by an UL
         // and we don't allocate! (which we do for truth tables of Boolean functions)
-	table_f1 = ( unsigned int * ) malloc ( m * sizeof (unsigned int) );
-	table_f2 = ( unsigned int * ) malloc ( m * sizeof (unsigned int) );
+	table_f1 = ( UL * ) malloc ( pow2 (m) * sizeof (UL) );
+	table_f2 = ( UL * ) malloc ( pow2 (m) * sizeof (UL) );
 
 	for ( j = 0; j < 2; j++) {
-		for ( i = 0; i < m; i++) {
+		for ( i = 0; i < pow2 (m); i++) {
 			if ( j == 0 ) {
                             // again, I think "i" is preferable to "i+1"
-				printf ("Enter the [%d] boolean value of first binary vector: ", i + 1);
-				scanf ("%du", &table_f1[i]);
+				printf ("Enter the [%lu] boolean value of first binary vector: ", i);
+				scanf ("%lu", &table_f1[i]);
+				if ( table_f1[i] != 0 && table_f1[i] != 1 ) {
+					printf ("Program accepts only binary values [0/1]\n");
+					i = i - 1;
+				}
 			}
 			else {
-				printf ("Enter the [%d] boolean value of second binary vector: ", i + 1);
-				scanf ("%du", &table_f2[i]);
+				printf ("Enter the [%lu] boolean value of second binary vector: ", i);
+				scanf ("%lu", &table_f2[i]);
+				if ( table_f2[i] != 0 && table_f2[i] != 1 ) {
+					printf ("Program accepts only binary values [0/1]\n");
+					i = i - 1;
+				}
 			}
 		}
 	}
@@ -36,22 +43,18 @@ int main ( int argc, char ** argv ) {
 	printf ("\nTruth Table\n");
 	printf ("f1\tf2\tProduct\n");
 
-	for ( i = 0; i < m; i++ ) {
+	for ( i = 0; i < pow2 (m); i++ ) {
 		for ( j = 0; j < 2; j++ ) {
 			if ( j == 0 )
-				printf ("%d\t", table_f1[i]);
+				printf ("%lu\t", table_f1[i]);
 			else {
-				printf ("%d\t", table_f2[i]);
-				printf ("%d\n", table_f1[i] * table_f2[i]);
+				printf ("%lu\t", table_f2[i]);
+				printf ("%lu\n", table_f1[i] * table_f2[i]);
 			}
 		}
 	}
 
-	for (i = 0; i < m; i++) 
-		product += table_f1[i] * table_f2[i];
-
-	printf ("\nThe scalar product between two binary vector is: %d\n", product);
-        // OK, but we want a pure function here, not code in main with I/O.
+	printf ("\nThe scalar product between two binary vector is: %lu\n", scalar_product (table_f1, table_f2, m));
 
 	free (table_f1);
 	free (table_f2);
