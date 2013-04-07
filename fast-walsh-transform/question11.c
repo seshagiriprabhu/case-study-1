@@ -7,11 +7,12 @@
 int * FastWalshTransform ( int *f, int m ) {
 	int *temp_f;
 	int count = 0, temp = m;
+	UL n = pow2 (m);
 	UL u, j;
 	UL split, tempSplit;
-	temp_f = ( int * ) malloc ( pow2 (m) * sizeof(int) );
+	temp_f = ( int * ) malloc ( n * sizeof(int) );
 
-	for ( u = 0; u < pow2 (m); u++ ) 
+	for ( u = 0; u < n; u++ ) 
 		temp_f[u] = f[u] = sign(f[u]);
 
 	temp = temp - 1;
@@ -19,10 +20,10 @@ int * FastWalshTransform ( int *f, int m ) {
 		tempSplit = split = pow2 (temp) ;
                 // this algo below, with tempSplit and count, and with
                 // "% pow2 (m)", seems over-complicated. There is a simpler solution.
-		for ( u = 0; u < pow2 (m); u = u + split ) {
+		for ( u = 0; u < n; u = u + split ) {
 			for ( j = u; j < u + split; j++ ) {
 				if ( j < tempSplit ) 
-					temp_f[j] =  f[j] + f[ ( j + split ) % pow2 (m) ] ; 
+					temp_f[j] =  f[j] + f[ ( j + split ) % n ] ; 
 				else  
 					temp_f[j] = f [ j - split ] - f[j]; 
 			}
@@ -32,7 +33,7 @@ int * FastWalshTransform ( int *f, int m ) {
 				count = 0;
 			}
 		}
-		for ( u = 0; u < pow2 (m); u++ )
+		for ( u = 0; u < n; u++ )
 			f[u] = temp_f[u];
 
 		temp = temp - 1;
@@ -45,21 +46,21 @@ int main ( ) {
 	int *f;
 	int *fastWalsh_f;
 	UL m, i;
-
 	printf ("Enter the number of variables in your boolean function : ");
 	scanf ("%lu", &m);
 
-	f = ( int * ) malloc ( pow2 (m) * sizeof ( int ) );
-	fastWalsh_f = ( int * ) malloc ( pow2 (m) * sizeof ( int ) );
+	UL n = pow2 (m);
+	f = ( int * ) malloc ( n * sizeof ( int ) );
+	fastWalsh_f = ( int * ) malloc ( n * sizeof ( int ) );
 
-	for ( i = 0; i < pow2 (m); i++ ) {
+	for ( i = 0; i < n; i++ ) {
 		printf ("Enter the value of [%lu] of boolean funciton: ", i);
 		scanf  ("%d", &f[i]);
 	}
 
 	fastWalsh_f = FastWalshTransform (f, m);
 
-	for ( i = 0; i < pow2 (m); i++ ) {
+	for ( i = 0; i < n; i++ ) {
 		if ( i == 0 )
 			printf ("\n%d\t", fastWalsh_f[i]);
 		else
