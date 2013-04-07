@@ -7,33 +7,36 @@
 */
 
 #include "header.h"
+/* LL is long long */
+/* Converts the given Unsigned integer to a binary arrray of size 2**m 
+ * such that it can be used for scalar product with boolean function a */
+UL * UL_to_binary_array ( UL x, UL m ) {
+	UL i = 0, j; 
+	UL *xBinary;
+	xBinary = ( UL * ) malloc ( pow2 (m) * sizeof ( UL ));
+	while ( x > 0 ) {
+		if ( x & 1 ) 
+			xBinary[i] = 1;
+		else 
+			xBinary[i] = 0;
+		i = i + 1;
+		x = x >> 1;
+	}
+	for ( j = i; j < pow2 (m); j++ )
+		xBinary[j] = 0;
+	return xBinary;
+}
 
-/* A function to calculate the power of a number */
-
-// Confusing name and confusing comment:
-// this function computes number * 2**(power-1)
-// (where '**' represents exponentiation).
-// In the context of Boolean functions,
-// the term "power function" means something
-// completely different
-
-// I don't really get what this function is meant for...
-// But it has the same name as a different function
-// in question8.c, so it is confusing
-
-
-// Next 2 functions: what is m? there is confusion
-// Try to reread the question & revise, and let's discuss if you
-// don't understand.
-// Also: don't do I/O in functions which should be pure!
-// Do I/O in e.g. main.
-
-UL WalshTransform ( UL *f, UL *a, UL m ) {
-	UL i, scalarProduct, output = 0;
+/* Return value is long long because it should hold values from -2**m to 2**m */
+LL WalshTransform ( UL *f, UL *a, UL m ) {
+	UL i, scalarProduct;						/* Holds the result of scalarProduct between a and x) */
+	LL signResult; 								/* Holds the result of sign function (-1)**(f(x) + a.x) */
+	LL output = 0; 								/* Holds the result of sigma function */
 	for ( i = 0; i < pow2 (m); i++ ) {
-		scalarProduct = i * a[i];
-		scalarProduct = scalarProduct % 2;
-		output = output + (f[i] + scalarProduct); 
+		scalarProduct = scalar_product (a, UL_to_binary_array (i, m), m); 
+		scalarProduct = hamming_weight(scalarProduct) % 2;  /* Modulo 2 is performed */
+		signResult =  sign ( (f[i] + scalarProduct) % 2 );  /* Sign values can take only 0 and 1 that's why modulo 2*/
+		output = output + signResult;
 	}
 	return output;
 }
@@ -74,12 +77,11 @@ int main () {
 		for ( j = 0; j < 2; j++ ) {
 			if ( j == 0 ) 
 				printf ("%lu\t", table_f1[i]);			
-
 			else 
 				printf ("%lu\n", a[i]);
 		}	
 	}
 
-	printf ("The walsh transform of the given vector is %lu\n", WalshTransform (table_f1, a, m));
+	printf ("The walsh transform of the given vector is %lld\n", WalshTransform (table_f1, a, m));
 	return 0;
 }
