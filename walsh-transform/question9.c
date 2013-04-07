@@ -13,7 +13,8 @@
 UL * UL_to_binary_array ( UL x, UL m ) {
 	UL i = 0, j; 
 	UL *xBinary;
-	xBinary = ( UL * ) malloc ( pow2 (m) * sizeof ( UL ));
+	UL n = pow2 (m);
+	xBinary = ( UL * ) malloc ( n * sizeof ( UL ));
 	while ( x > 0 ) {
 		if ( x & 1 ) 
 			xBinary[i] = 1;
@@ -22,7 +23,7 @@ UL * UL_to_binary_array ( UL x, UL m ) {
 		i = i + 1;
 		x = x >> 1;
 	}
-	for ( j = i; j < pow2 (m); j++ )
+	for ( j = i; j < n; j++ )
 		xBinary[j] = 0;
 	return xBinary;
 }
@@ -48,11 +49,12 @@ int main () {
 
 	printf ("Enter the number of variables in the boolean function: ");
 	scanf ("%lu", &m);
+	UL n = pow2 (m);
 
-	table_f1 = ( UL * ) malloc ( pow2 (m) * sizeof (UL) );
-	a =  ( UL * ) malloc ( pow2 (m) * sizeof (UL) );
+	table_f1 = ( UL * ) malloc ( n * sizeof (UL) );
+	a =  ( UL * ) malloc ( n * sizeof (UL) );
 	
-	for ( i = 0; i < pow2 (m); i++ ) {
+	for ( i = 0; i < n; i++ ) {
 		printf ("Enter the [%lu] boolean value of boolean function f: ", i);
 		scanf ("%lu", &table_f1[i]);
 		if ( table_f1[i] != 0 && table_f1[i] != 1 ) {
@@ -61,7 +63,7 @@ int main () {
 		}
 	}
 
-	for ( i = 0; i < pow2 (m); i++ ) {
+	for ( i = 0; i < n; i++ ) {
 		printf ("Enter the [%lu] boolean value of boolean function a: ", i);
 		scanf ("%lu", &a[i]);
 		if ( a[i] != 0 && a[i] != 1 ) {
@@ -73,7 +75,7 @@ int main () {
 	printf ("Truth Table\n");
 	printf ("f\ta\n");
 
-	for ( i = 0; i < pow2 (m); i++ ) {
+	for ( i = 0; i < n; i++ ) {
 		for ( j = 0; j < 2; j++ ) {
 			if ( j == 0 ) 
 				printf ("%lu\t", table_f1[i]);			
