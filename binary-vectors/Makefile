@@ -60,7 +60,8 @@ OBJECTS		:
 
 $(OBJS)		: | OBJECTS
 
-OBJECTS/%.o	: %.c
+# important: objects *depend* on header.h !
+OBJECTS/%.o	: %.c $(HEADER)/header.h
 			gcc $(CFLAG) -I$(HEADER) -o $@ $<
 
 # for the EXECS... not sure it is good style!
