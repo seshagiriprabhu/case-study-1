@@ -14,6 +14,10 @@ void check_first_bit ( unsigned int bit ) {
 int check_random_bit ( unsigned int bit, int i ) {
 	int temp = ( bit >> i ) &	1;
 	return temp;
+// try to be consistent : temp is int but bit is unsigned int.
+// And now you are using unsigned longs almost everywhere...
+// We prefer in general not mixing types in arithmetic. At best,
+// it (may) incur a cast penalty.
 }
 
 int main () {
