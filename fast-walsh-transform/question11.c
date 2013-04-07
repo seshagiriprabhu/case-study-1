@@ -4,10 +4,6 @@
 #include "header.h"
 
 /* A function to computer the FastWalshTransform */
-// It works. Now write a pure function, which returns
-// a new array containing the walsh transform
-// (or better: which takes an array as a parameter where it puts
-// the walsh transform values).
 int * FastWalshTransform ( int *f, int m ) {
 	int *temp_f;
 	int count = 0, temp = m;
