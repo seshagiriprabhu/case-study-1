@@ -11,7 +11,6 @@ int * FastWalshTransform ( int *f, int m ) {
 	UL split, tempSplit;
 	temp_f = ( int * ) malloc ( pow2 (m) * sizeof(int) );
 
-	/* Replaces all the values of the function by their sign */
 	for ( u = 0; u < pow2 (m); u++ ) 
 		temp_f[u] = f[u] = sign(f[u]);
 
@@ -22,27 +21,17 @@ int * FastWalshTransform ( int *f, int m ) {
                 // "% pow2 (m)", seems over-complicated. There is a simpler solution.
 		for ( u = 0; u < pow2 (m); u = u + split ) {
 			for ( j = u; j < u + split; j++ ) {
-
-				/* if the current  index is less than the split value, it adds the boolean values */
 				if ( j < tempSplit ) 
 					temp_f[j] =  f[j] + f[ ( j + split ) % pow2 (m) ] ; 
-
-				/* if the current index is greater than the split value, it takes the difference 
-				 * of the boolean values */
 				else  
 					temp_f[j] = f [ j - split ] - f[j]; 
 			}
-
-			/* Re-assigns the temp split value after two iterations 
-			 * i.e after completing one round of addition operations (f[u] + f[u + split ]
-			 * and difference operation (f[u] - f[u - split]) */
 			count = count + 1;
 			if (count == 2) {
 				tempSplit = tempSplit + pow2 (split);
 				count = 0;
 			}
 		}
-
 		for ( u = 0; u < pow2 (m); u++ )
 			f[u] = temp_f[u];
 
