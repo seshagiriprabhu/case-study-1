@@ -4,17 +4,8 @@
 
 #include "header.h"
 /* UL is the macro of unsigned long */
-
-// It is function count_non_zero from question 3! (with a better name...)
-// search DRY on google/wikipedia
-
-/* A function to calculate the hamming weight of each and every boolean value */
-// better name: e.g. table_hamming_weight
 UL table_hamming_weight ( UL *val, int m ) {
 	UL i, total_weight = 0;
-
-        // Why only 4 values?? the example in the pdf has 4 values,
-        // but your function shoULd be general (to be usable in the real world)
 	for ( i = 0; i < pow2 (m); i++ ) {
 		if ( val[i] == 1 )
 			total_weight  = total_weight + 1;

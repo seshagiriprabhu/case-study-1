@@ -4,10 +4,6 @@
 
 #include "header.h"
 /* UL is the macro of unsigned long */
-
-// comment your function: what is m?
-// in the pdf, m was meant to be the number of variables,
-// so we don't need to check that the input is a power of 2.
 UL hamming_distance ( UL *f1, UL *f2, UL m ) {
 	UL i, count = 0;
 	for ( i = 0; i < pow2 (m); i++ ) {

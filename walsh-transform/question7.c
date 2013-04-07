@@ -12,16 +12,12 @@ int main () {
 	printf ("Enter the number of variables in the boolean function: ");
 	scanf ("%lu", &m);
 
-        // here m is the number of variables... the two input vectors are of dimension m
-        // which can be assumed to be < 32, and are represented by an UL
-        // and we don't allocate! (which we do for truth tables of Boolean functions)
 	table_f1 = ( UL * ) malloc ( pow2 (m) * sizeof (UL) );
 	table_f2 = ( UL * ) malloc ( pow2 (m) * sizeof (UL) );
 
 	for ( j = 0; j < 2; j++) {
 		for ( i = 0; i < pow2 (m); i++) {
 			if ( j == 0 ) {
-                            // again, I think "i" is preferable to "i+1"
 				printf ("Enter the [%lu] boolean value of first binary vector: ", i);
 				scanf ("%lu", &table_f1[i]);
 				if ( table_f1[i] != 0 && table_f1[i] != 1 ) {

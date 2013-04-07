@@ -11,18 +11,9 @@
 /* A function which check whether the boolean functions are balanced
  * or not */
 
-// this function is unusable: what if I want to check the balancedness of
-// millions functions? this kind of function *should never* do I/O
-// (input/ouput), but return a useful value
-// (boolean (true/false) value in this case).
-// after all, you don't scanf the values of f and m from
-// inside the function...
-
-// keeping my old comments is misleading, it does not apply to your new code!
 // again, try to stay consistent... m was previously an int. You could have
 // in header.h something like :
 // typedef int num_var_t;
-
 UL is_balanced (UL *f, UL m) {
 	UL i, count = 0;
 
@@ -54,7 +45,6 @@ int main () {
 	f = ( UL * ) malloc ( m * sizeof ( UL ) );
 
 	for ( i = 0; i < pow2 (m); i++ ) {
-            // I don't think you should write 'i+1' ..
 		printf ("Enter the [%lu] boolean value of the boolean function: ", i);
 		scanf ("%lu", &f[i]);
 		if ( f[i] != 0 && f[i] != 1 ) {
