@@ -54,7 +54,7 @@ void nonlinearity ( unsigned int * u, int m ) {
 
 }
 
-int main ( int argc, char ** argv ) {
+int main ( ) {
 	unsigned int * u;
 	int m, i;
 
