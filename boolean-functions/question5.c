@@ -13,6 +13,7 @@ UL hamming_distance ( UL *f1, UL *f2, UL m ) {
 	for ( i = 0; i < pow2 (m); i++ ) {
 		if ( f1[i] ^ f2[i] )
 			count++;
+                // same as question4: count += f1[i]^f2[i]
 	}
 	return count;
 }

@@ -18,6 +18,8 @@ UL table_hamming_weight ( UL *val, int m ) {
 	for ( i = 0; i < pow2 (m); i++ ) {
 		if ( val[i] == 1 )
 			total_weight  = total_weight + 1;
+                // it is nice. We can do without a test:
+                // total_weight += val[i]
 	}
 	return total_weight;
 }
