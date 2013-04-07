@@ -6,32 +6,17 @@
 
 /* Function returns the indice of the first non-zero value
    in the given unsigned integer						*/
-
-// why not use type "unsigned long"?
-// I guess it is of same size on your machine.
-// On 64-bit architectures, (unsigned) int is usually 32 bits
-// whereas (unsigned) long is 64 bits (native ints), so
-// long is preferred.
-
 UL find_indice ( unsigned long u) {
 	UL indice = 0;
 
 	if ( u == 0 )
 		return 0;
-
-    // why do you choose the name 'temp'?	
-    // UINT_MAX is an improvement over previous version, but it is far
-    // from optimal! (maybe it is even UB (undefined behaviour) - even if
-    // I think it is defined for gcc - when shifting u for u == 0
 	while ( u > 0 ) {
 		if ( ( u  & 1 ) == 1 ) 
 			break;
 		indice = indice + 1;
 		u = u >> 1;
 	}
-        // I think you should return indice, the user knows that indices
-        // start at 0.
-        // what is the value of indice for u == 0??
 	return indice;
 }
 
