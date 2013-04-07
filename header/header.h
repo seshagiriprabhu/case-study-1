@@ -9,6 +9,7 @@
 
 /*------------------Macros--------------------*/
 #define UL unsigned long
+#define LL long long
 
 /*-----------------Functions------------------*/
 
@@ -33,10 +34,10 @@ UL pow2 ( int power ) {
 }
 
 /* A function to invert the sign of a binary */
-int sign ( int e ) {
+int sign ( UL e ) {
 	if ( e & 1 )
 		return -1;
-	return 0;
+	return 1;
 }
 
 /* A function to calculate the scalar product of two vectors */
