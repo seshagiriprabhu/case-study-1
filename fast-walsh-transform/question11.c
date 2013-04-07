@@ -13,34 +13,16 @@ void FastWalshTransform ( int * f, int m ) {
 	temp_f = ( int * ) malloc ( pow2 (2, m) * sizeof(int) );
 	int u, j, temp = m, count = 0;
 	int split, tempSplit;
-	
-	/* Prints the actual boolean values as index */
-	printf ("\nm\t|\t");
-	for (u = 0; u < pow2 (2, m); u++ ) 
-		printf ("%d\t", f[u]);
-	printf ("\n--------------------------------------------------------------------------------\n");
-	
+
 	/* Replaces all the values of the function by their sign */
 	for ( u = 0; u < pow2 (2, m); u++ ) 
 		temp_f[u] = f[u] = sign(f[u]);
-
-	/* Prints the initial reverse sign boolean values */
-	printf ("%d\t|\t", temp);
-	for ( u = 0; u < pow2 (2, m); u++ ) {
-		printf ("%d\t", f[u]);
-
-		if (u == pow2 (2, m) - 1 )
-			printf ("\n");
-	}
-
 	temp = temp - 1;
+
 	while ( temp > -1 ) {	
             // split is then equal to pow2(2, temp), right??
 		split = pow2 (2, m) / ( pow2 (2, m) / pow2 (2, temp) );
 		tempSplit = split;
-
-		printf ("%d\t|\t", temp);	
-
                 // this algo below, with tempSplit and count, and with
                 // "% pow2 (2, m)", seems over-complicated. There is a simpler solution.
 		for ( u = 0; u < pow2 (2, m); u = u + split ) {
@@ -66,16 +48,6 @@ void FastWalshTransform ( int * f, int m ) {
 				count = 0;
 			}
 		}
-		
-		/* Prints the boolean values at each stages */
-		for ( u = 0; u < pow2 (2, m); u++ ) {
-			f[u] = temp_f[u];
-			printf ("%d\t", f[u]);
-
-			if ( u == ( pow2 (2, m) - 1 ) )
-				printf ("\n");
-		}
-
 		temp = temp - 1;
 	}
 	free (temp_f);
