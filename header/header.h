@@ -110,4 +110,12 @@ int * walsh_transform ( int *f, int m ) {
 	free (temp_f);
 	return temp_f;
 }
+
+ulong table_hamming_weight ( ulong *val, ulong m ) {
+	ulong i, total_weight = 0;
+	for ( i = 0; i < pow2 (m); i++ ) 
+			total_weight  = total_weight + val[i];
+	return total_weight;
+}
+
 #endif
