@@ -7,31 +7,18 @@
 
 #include "header.h"
 
-
-/* A function which check whether the boolean functions are balanced
- * or not */
-
-// again, try to stay consistent... m was previously an int. You could have
-// in header.h something like :
-// typedef int num_var_t;
-UL is_balanced (UL *f, UL m) {
-	UL i, count = 0;
-
-        // maybe the optimizer can do it itself, but I think
-        // it is better to cache the value of pow2(m) :
-	/* for ( i = 0, n=pow2(m); i < n; i++) { */
-	for ( i = 0; i < pow2 (m); i++) {
-            // this is exacltly the same code as in question 4.,
-            // i.e. you compute the Hamming weight... DRY!
-		if ( f[i] == 1 )
-			count = count + 1;
-	}
-	return count;
+bool is_balanced ( ulong *f, ulong m ) {
+	ulong  i, count = 0;
+	for ( i = 0; i < pow2 (m); i++) 
+		count = count + f[i];
+	if ( count == ( pow2 (m) / 2) )
+		return 1;
+	return 0;
 }
 
 int main () {
-	UL *f;
-	UL m, i, count;
+	ulong *f;
+	ulong m, i;
 	printf ("Enter the value of m: ");
 	scanf ("%lu", &m);
 	
@@ -42,7 +29,7 @@ int main () {
 
         // this is wrong (look at your malloc in question5), you should
         // have a function 'allocate_table(int m)' and write 'f=allocate_table(m)'
-	f = ( UL * ) malloc ( m * sizeof ( UL ) );
+	f = ( ulong * ) malloc ( pow2 (m) * sizeof ( ulong ) );
 
 	for ( i = 0; i < pow2 (m); i++ ) {
 		printf ("Enter the [%lu] boolean value of the boolean function: ", i);
@@ -53,15 +40,10 @@ int main () {
 		}	
 	}
 
-	count = is_balanced (f, m);
-        // the test below should be in 'is_balanced', which returns 1
-        // iff f is balanced, and 0 otherwise
-        // (in C, 1 (or more generally any non-zero value) is true,
-        // 0 is false, by convention)
-	if ( count == ( pow2 (m) / 2 ) )
-		printf ("The given boolean function is balanced\n");
+	if ( is_balanced (f, m) )
+		printf ("Given function is balanced\n");
 	else
-		printf ("The given boolean function is not balanced\n");
+		printf ("Given function is not balanced\n");
 
 	free(f);
 	return 0;
