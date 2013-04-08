@@ -3,27 +3,24 @@
    would/could be int hamming_distance(int f1[], int f2[], int m) */
 
 #include "header.h"
-/* UL is the macro of unsigned long */
-UL hamming_distance ( UL *f1, UL *f2, UL m ) {
-	UL i, count = 0;
-	for ( i = 0; i < pow2 (m); i++ ) {
-		if ( f1[i] ^ f2[i] )
-			count++;
-                // same as question4: count += f1[i]^f2[i]
-	}
+
+ulong hamming_distance ( ulong *f1, ulong *f2, ulong m ) {
+	ulong i, count = 0;
+	for ( i = 0; i < pow2 (m); i++ )
+		count = count + ( f1[i]^f2[i] );
 	return count;
 }
 
 int main () {
-	UL *f1;
-	UL *f2;
-	UL i, j, m; /* M is the number of variables in the boolean function */
+	ulong *f1;
+	ulong *f2;
+	ulong i, j, m; /* M is the number of variables in the boolean function */
 
 	printf ("Enter the number of variables in your boolean function: ");
 	scanf ("%lu", &m);
 
-	f1 = ( UL * ) malloc ( pow2 (m) * sizeof(UL) );
-	f2 = ( UL * ) malloc ( pow2 (m) * sizeof(UL) );
+	f1 = ( ulong * ) malloc ( pow2 (m) * sizeof ( ulong ) );
+	f2 = ( ulong * ) malloc ( pow2 (m) * sizeof ( ulong ) );
 
 	for ( j = 0; j < 2; j++ ) {
 		for ( i = 0; i < pow2 (m); i++ ) {
