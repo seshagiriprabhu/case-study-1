@@ -6,6 +6,7 @@
    function f */
 
 #include "header.h"
+/* STATUS: COMPLETE */
 
 bool is_balanced ( ulong *f, ulong m ) {
 	ulong count = table_hamming_weight (f, m);

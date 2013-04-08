@@ -3,6 +3,7 @@
    would/could be int hamming_distance(int f1[], int f2[], int m) */
 
 #include "header.h"
+/* STATUS: COMPLETE */
 
 ulong hamming_distance ( ulong *f1, ulong *f2, ulong m ) {
 	ulong i, count = 0;

@@ -3,6 +3,7 @@
    of ints), and returning its Hamming weight */
 
 #include "header.h"
+/* STATUS: COMPLETE */
 
 int main ( ) {
 	ulong *table_f;
