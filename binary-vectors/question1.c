@@ -11,12 +11,8 @@ bool check_first_bit ( ulong bit ) {
 
 /* This function checks the value of the given integer's ith the binary 
    position */
-ulong check_random_bit ( ulong bit,  ulong i ) {
+bool check_random_bit ( ulong bit,  ulong i ) {
 	return ( ( bit >> i ) & 1 );
-// try to be consistent : temp is int but bit is unsigned int.
-// And now you are using unsigned longs almost everywhere...
-// We prefer in general not mixing types in arithmetic. At best,
-// it (may) incur a cast penalty.
 }
 
 int main () {
@@ -33,17 +29,14 @@ int main () {
 		switch ( choice ) {
 			case 1: printf ("Enter the integer: ");
 					scanf ("%lu", &u);
-					if ( check_first_bit (u) )
-						printf ("First bit is 1\n");
-					else
-						printf ("First bit is 0\n");
+					printf ("The first bit is %d\n", check_first_bit (u));
 			break;
 
 			case 2: printf ("Enter the integer: ");
 					scanf ("%lu", &u);
 					printf ("Enter the value of ith bit which you want to extract from the integer: ");
 					scanf ("%lu", &i);
-					printf ("The requested bit is : %lu\n" , check_random_bit(u, i));
+					printf ("The requested bit is : %d\n" , check_random_bit(u, i));
 			break;
 
 			case 3: printf ("\n=====================================================\n");
