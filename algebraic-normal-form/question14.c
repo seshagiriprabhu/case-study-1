@@ -5,26 +5,24 @@
 #include "header.h"
 
 /* A function to implement the monomial degree */
-void monomial_degree ( unsigned int * M, int m ) {
-	int i;
-
-	for ( i = 0; i < m; i++ ) 
-		printf ("The monomial degree of [%d] is %d\n", M[i], hamming_weight (M[i]));
-
+UL * monomial_degree ( UL * M, UL m ) {
+	UL i;
+	for ( i = 0; i < pow2 (m); i++ ) 
+		printf ("The monomial degree of [%lu] is %lu\n", M[i], hamming_weight (M[i]))
 }
 
-int main ( int argc, char ** argv ) {
-	unsigned int * M;
-	int m, i;
+int main () {
+	UL * M;
+	UL m, i;
 
-	printf ("How many monomial degrees you want to calculate: ");
-	scanf ("%d", &m);
+	printf ("Enter the number of variables in your boolean function: ");
+	scanf ("%lu", &m);
 
-	M = ( unsigned int * ) malloc ( m * sizeof ( unsigned int ) );
+	M = ( UL * ) malloc ( pow2 (m) * sizeof ( UL ) );
 
-	for ( i = 0; i < m; i++) {
-		printf ("Enter the [%d] monomial: ", i + 1);
-		scanf ("%du", &M[i]);
+	for ( i = 0; i < pow2 (m); i++) {
+		printf ("Enter the [%lu] monomial: ", i);
+		scanf ("%lu", &M[i]);
 	}
 	
 	monomial_degree(M, m);
