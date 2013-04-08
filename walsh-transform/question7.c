@@ -3,17 +3,18 @@
  * of f2^m given as integers */
 
 #include "header.h"
+/* STATUS: COMPLETE */
 
 int main () {
-	UL *table_f1;
-	UL *table_f2;
-	UL i, j, m; /* M --> Number of variables in the boolean function */
+	ulong *table_f1;
+	ulong *table_f2;
+	ulong i, j, m; /* M --> Number of variables in the boolean function */
 	
 	printf ("Enter the number of variables in the boolean function: ");
 	scanf ("%lu", &m);
 
-	table_f1 = ( UL * ) malloc ( pow2 (m) * sizeof (UL) );
-	table_f2 = ( UL * ) malloc ( pow2 (m) * sizeof (UL) );
+	table_f1 = ( ulong * ) malloc ( pow2 (m) * sizeof (ulong) );
+	table_f2 = ( ulong * ) malloc ( pow2 (m) * sizeof (ulong) );
 
 	for ( j = 0; j < 2; j++) {
 		for ( i = 0; i < pow2 (m); i++) {

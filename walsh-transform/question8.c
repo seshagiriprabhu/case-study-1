@@ -4,13 +4,14 @@
  * function (int sign(int e) in C) */
 
 #include "header.h"
+/* STATUS : COMPLETE */
 
 int main () {
 	int value;
 	printf ("Enter the value: ");
 	scanf ("%d", &value);
 
-	if ( value !=0 && value != 1 ) {
+	if ( value != 0 && value != 1 ) {
 		printf ("Program accepts only binary values [0/1]\n");
 		exit(0);
 	}

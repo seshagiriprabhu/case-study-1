@@ -7,14 +7,13 @@
 */
 
 #include "header.h"
-/* LL is long long */
 /* Converts the given Unsigned integer to a binary arrray of size 2**m 
  * such that it can be used for scalar product with boolean function a */
-UL * UL_to_binary_array ( UL x, UL m ) {
-	UL i = 0, j; 
-	UL *xBinary;
-	UL n = pow2 (m);
-	xBinary = ( UL * ) malloc ( n * sizeof ( UL ));
+ulong * ulong_to_binary_array ( ulong x, ulong m ) {
+	ulong i = 0, j; 
+	ulong *xBinary;
+	ulong n = pow2 (m);
+	xBinary = ( ulong * ) malloc ( n * sizeof ( ulong ));
 	while ( x > 0 ) {
 		if ( x & 1 ) 
 			xBinary[i] = 1;
@@ -35,10 +34,10 @@ UL * UL_to_binary_array ( UL x, UL m ) {
 // a is a binary vector, given as an integer...
 // you should rewrite scalarProduct for integers.
 
-LL WalshTransform ( UL *f, UL *a, UL m ) {
-	UL i, scalarProduct;						/* Holds the result of scalarProduct between a and x) */
-	LL signResult; 								/* Holds the result of sign function (-1)**(f(x) + a.x) */
-	LL output = 0; 								/* Holds the result of sigma function */
+llong WalshTransform ( ulong *f, ulong *a, ulong m ) {
+	llong i, scalarProduct;						/* Holds the result of scalarProduct between a and x) */
+	llong signResult; 								/* Holds the result of sign function (-1)**(f(x) + a.x) */
+	llong output = 0; 								/* Holds the result of sigma function */
 	for ( i = 0; i < pow2 (m); i++ ) {
 		scalarProduct = scalar_product (a, UL_to_binary_array (i, m), m); 
 		scalarProduct = hamming_weight(scalarProduct) % 2;  /* Modulo 2 is performed */
@@ -49,16 +48,16 @@ LL WalshTransform ( UL *f, UL *a, UL m ) {
 }
 
 int main () {
-	UL *table_f1;
-	UL *a;
-	UL m, i, j;
+	ulong *table_f1;
+	ulong *a;
+	ulong m, i, j;
 
 	printf ("Enter the number of variables in the boolean function: ");
 	scanf ("%lu", &m);
-	UL n = pow2 (m);
+	ulong n = pow2 (m);
 
-	table_f1 = ( UL * ) malloc ( n * sizeof (UL) );
-	a =  ( UL * ) malloc ( n * sizeof (UL) );
+	table_f1 = ( ulong * ) malloc ( n * sizeof (ulong) );
+	a =  ( ulong * ) malloc ( n * sizeof (ulong) );
 	
 	for ( i = 0; i < n; i++ ) {
 		printf ("Enter the [%lu] boolean value of boolean function f: ", i);
