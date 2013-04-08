@@ -3,12 +3,13 @@
  * monomial given as an integer  */
 
 #include "header.h"
+/* STATUS: INCOMPLETE */
 
 /* A function to implement the monomial degree */
 UL * monomial_degree ( UL * M, UL m ) {
 	UL i;
 	for ( i = 0; i < pow2 (m); i++ ) 
-		printf ("The monomial degree of [%lu] is %lu\n", M[i], hamming_weight (M[i]))
+		printf ("The monomial degree of [%lu] is %lu\n", M[i], hamming_weight (M[i]));
 }
 
 int main () {
