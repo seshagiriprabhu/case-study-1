@@ -29,6 +29,12 @@ UL * UL_to_binary_array ( UL x, UL m ) {
 }
 
 /* Return value is long long because it should hold values from -2**m to 2**m */
+// Why do we need long long?
+
+// you have to reread the question :
+// a is a binary vector, given as an integer...
+// you should rewrite scalarProduct for integers.
+
 LL WalshTransform ( UL *f, UL *a, UL m ) {
 	UL i, scalarProduct;						/* Holds the result of scalarProduct between a and x) */
 	LL signResult; 								/* Holds the result of sign function (-1)**(f(x) + a.x) */
