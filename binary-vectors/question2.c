@@ -6,13 +6,12 @@
 
 /* Function returns the indice of the first non-zero value
    in the given unsigned integer						*/
-UL find_indice ( unsigned long u) {
-	UL indice = 0;
-
-	if ( u == 0 )
+ulong find_indice ( ulong u) {
+	ulong indice = 0;
+	if ( u == 0 || u == 1)
 		return 0;
-	while ( u > 0 ) {
-		if ( ( u  & 1 ) == 1 ) 
+	while ( u > 1 ) {
+		if ( u & 1 ) 
 			break;
 		indice = indice + 1;
 		u = u >> 1;
@@ -36,23 +35,20 @@ UL find_indice ( unsigned long u) {
 }
 
 int main () {
-	unsigned long u;
-	int choice;
+	ulong u;
+	ulong choice;
 	do {
 		printf ("=====================================================\n");
 		printf ("1. Check the position of first non-zero bit\n");
 		printf ("2. Exit\n");
 
 		printf ("Enter your choice: ");
-		scanf  ("%d", &choice);
+		scanf  ("%lu", &choice);
 
 		switch ( choice ) {
 			case 1: printf ("Enter the integer: ");
 					scanf ("%lu", &u);
-					if ( u > 0 )
-						printf ("The indice of the first non-zero number is %lu \n", find_indice (u));
-					else
-						printf ("The given unsigned integer doesn't contains a non-zero value\n");
+					printf ("The indice of the first non-zero number is %lu \n", find_indice (u));
 			break;
 			
 			case 2: printf ("\n=====================================================\n");
