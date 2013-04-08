@@ -39,7 +39,7 @@ llong WalshTransform ( ulong *f, ulong *a, ulong m ) {
 	llong signResult; 								/* Holds the result of sign function (-1)**(f(x) + a.x) */
 	llong output = 0; 								/* Holds the result of sigma function */
 	for ( i = 0; i < pow2 (m); i++ ) {
-		scalarProduct = scalar_product (a, UL_to_binary_array (i, m), m); 
+		scalarProduct = scalar_product (a, ulong_to_binary_array (i, m), m); 
 		scalarProduct = hamming_weight(scalarProduct) % 2;  /* Modulo 2 is performed */
 		signResult =  sign ( (f[i] + scalarProduct) % 2 );  /* Sign values can take only 0 and 1 that's why modulo 2*/
 		output = output + signResult;
