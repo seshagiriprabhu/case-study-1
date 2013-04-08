@@ -2,7 +2,7 @@
  * An implementation of Fast Walsh Algorithm
 */
 #include "header.h"
-
+/* STATUS: INCOMPLETE */
 /* A function to computer the FastWalshTransform */
 int * FastWalshTransform ( int *f, int m ) {
 	int *temp_f;
