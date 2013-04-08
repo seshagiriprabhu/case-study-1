@@ -48,4 +48,41 @@ UL scalar_product ( UL *table_f1, UL *table_f2, UL m ) {
 	return product;
 }
 
+/* A function to computer the FastWalshTransform 
+ * Copied from question11 */
+int * walsh_transform ( int *f, int m ) {
+	int *temp_f;
+	int count = 0, temp = m;
+	UL n = pow2 (m);
+	UL u, j;
+	UL split, tempSplit;
+	temp_f = ( int * ) malloc ( n * sizeof(int) );
+
+	for ( u = 0; u < n; u++ ) 
+		temp_f[u] = f[u] = sign(f[u]);
+
+	temp = temp - 1;
+	while ( temp > -1 ) {	
+		tempSplit = split = pow2 (temp) ;
+		for ( u = 0; u < n; u = u + split ) {
+			for ( j = u; j < u + split; j++ ) {
+				if ( j < tempSplit ) 
+					temp_f[j] =  f[j] + f[ ( j + split ) % n ] ; 
+				else  
+					temp_f[j] = f [ j - split ] - f[j]; 
+			}
+			count = count + 1;
+			if (count == 2) {
+				tempSplit = tempSplit + pow2 (split);
+				count = 0;
+			}
+		}
+		for ( u = 0; u < n; u++ )
+			f[u] = temp_f[u];
+
+		temp = temp - 1;
+	}
+	free (temp_f);
+	return temp_f;
+}
 #endif
