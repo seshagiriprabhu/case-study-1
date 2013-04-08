@@ -3,27 +3,16 @@
    of ints), and returning its Hamming weight */
 
 #include "header.h"
-/* UL is the macro of unsigned long */
-UL table_hamming_weight ( UL *val, int m ) {
-	UL i, total_weight = 0;
-	for ( i = 0; i < pow2 (m); i++ ) {
-		if ( val[i] == 1 )
-			total_weight  = total_weight + 1;
-                // it is nice. We can do without a test:
-                // total_weight += val[i]
-	}
-	return total_weight;
-}
 
 int main ( ) {
-	UL *table_f;
-	UL i;
-	UL m; /* Number of variables in the boolean function */
+	ulong *table_f;
+	ulong i;
+	ulong m; /* Number of variables in the boolean function */
 
 	printf ("Enter the number of variables in the boolean function: ");
 	scanf ("%lu", &m);
 	
-	table_f = ( UL * ) malloc ( pow2 (m) * sizeof ( UL *) );
+	table_f = ( ulong * ) malloc ( pow2 (m) * sizeof ( ulong *) );
 
 	for ( i = 0; i < pow2 (m); i++) {
 		printf ("Enter the [%lu] boolean value: ", i);
