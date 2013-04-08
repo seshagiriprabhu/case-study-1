@@ -3,6 +3,7 @@
    and an integer i, which returns the i-th bit of u */
 
 #include "header.h"
+/* STATUS : COMPLETE */
 
 /* This function checks whether the first binary is position is 0 or 1 */
 bool check_first_bit ( ulong bit ) {
