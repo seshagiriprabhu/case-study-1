@@ -8,9 +8,12 @@
 #include <limits.h>
 
 /*------------------Macros--------------------*/
-// VERY BAD STYLE!
-#define UL unsigned long
-#define LL long long
+typedef int bool;
+#define true 1
+#define false 0
+
+typedef unsigned long ulong;
+typedef long long llong;
 
 // there is  a C feature designed for this purpose :
 /* typedef unsigned long UL; */
@@ -37,8 +40,8 @@
 // However, I don't ask you to change your organisation now.
 
 /* A function to calculate the hamming weight of a given number */
-UL hamming_weight ( unsigned long u ) {
-	UL count = 0;
+ulong hamming_weight ( ulong u ) {
+	ulong count = 0;
 
 	while ( u > 0 ) {
 		if ( ( u & 1) == 1 )
@@ -49,30 +52,13 @@ UL hamming_weight ( unsigned long u ) {
 }
 
 /* A function to calculate the power of 2 */
-UL pow2 ( int power ) {
-	if ( power == 0 )
-		return 1;
-
-	return 2 << (power - 1);
-// better:
-//      return 1ul << power;
-// (then we don't need to handle the special case power==0
+ulong pow2 ( int power ) {
+	return 1ul << power;
 }
 
 /* A function to invert the sign of a binary */
-int sign ( UL e ) {
-    // what are the valid inputs for this function?
-    // If you accept any integer, maybe it will be more clear to
-    // write 'if ((e % 2) == 1)' which reads more directly as
-    // 'if e is in an odd number'
-	if ( e & 1 )
-		return -1;
-	return 1;
-    // If you accept only 0 and 1, directly return
-    // e ? -1 : 1
-    // In fact in this case there is a more efficient formula,
-    // which does not need a test :
-    // return 1 - 2 * e
+int sign ( ulong e ) {
+	return 1 - 2 * e;
 }
 
 //  this algo is good, but we represent binary vectors
@@ -80,8 +66,8 @@ int sign ( UL e ) {
 //  (this is the case only for truthtables)
 
 /* A function to calculate the scalar product of two vectors */
-UL scalar_product ( UL *table_f1, UL *table_f2, UL m ) {
-	UL i, product = 0;
+ulong scalar_product ( ulong *table_f1, ulong *table_f2, ulong m ) {
+	ulong i, product = 0;
 	for ( i = 0; i < pow2 (m); i++ ) 
 		product = product + ( table_f1[i] * table_f2[i] );
 	return product;
@@ -92,9 +78,9 @@ UL scalar_product ( UL *table_f1, UL *table_f2, UL m ) {
 int * walsh_transform ( int *f, int m ) {
 	int *temp_f;
 	int count = 0, temp = m;
-	UL n = pow2 (m);
-	UL u, j;
-	UL split, tempSplit;
+	ulong n = pow2 (m);
+	ulong u, j;
+	ulong split, tempSplit;
 	temp_f = ( int * ) malloc ( n * sizeof(int) );
 
 	for ( u = 0; u < n; u++ ) 
