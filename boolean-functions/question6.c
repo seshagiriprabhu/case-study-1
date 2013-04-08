@@ -8,9 +8,7 @@
 #include "header.h"
 
 bool is_balanced ( ulong *f, ulong m ) {
-	ulong  i, count = 0;
-	for ( i = 0; i < pow2 (m); i++) 
-		count = count + f[i];
+	ulong count = table_hamming_weight (f, m);
 	if ( count == ( pow2 (m) / 2) )
 		return 1;
 	return 0;
