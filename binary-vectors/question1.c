@@ -5,15 +5,14 @@
 #include "header.h"
 
 /* This function checks whether the first binary is position is 0 or 1 */
-void check_first_bit ( unsigned int bit ) {
-	printf ("The first bit is : %d\n", ( bit & 1 ) );
+bool check_first_bit ( ulong bit ) {
+	return ( bit & 1 );
 }
 
 /* This function checks the value of the given integer's ith the binary 
    position */
-int check_random_bit ( unsigned int bit, int i ) {
-	int temp = ( bit >> i ) &	1;
-	return temp;
+ulong check_random_bit ( ulong bit,  ulong i ) {
+	return ( ( bit >> i ) & 1 );
 // try to be consistent : temp is int but bit is unsigned int.
 // And now you are using unsigned longs almost everywhere...
 // We prefer in general not mixing types in arithmetic. At best,
@@ -21,8 +20,7 @@ int check_random_bit ( unsigned int bit, int i ) {
 }
 
 int main () {
-	unsigned int u;
-	int i, choice;
+	ulong u, i, choice;
 	do {
 		printf ("=====================================================\n");
 		printf ("1. Check first bit\n");
@@ -30,19 +28,22 @@ int main () {
 		printf ("3. Exit\n");
 
 		printf ("Enter your choice: ");
-		scanf  ("%d", &choice);
+		scanf  ("%lu", &choice);
 
 		switch ( choice ) {
 			case 1: printf ("Enter the integer: ");
-					scanf ("%du", &u);
-					check_first_bit (u);
+					scanf ("%lu", &u);
+					if ( check_first_bit (u) )
+						printf ("First bit is 1\n");
+					else
+						printf ("First bit is 0\n");
 			break;
 
 			case 2: printf ("Enter the integer: ");
-					scanf ("%du", &u);
+					scanf ("%lu", &u);
 					printf ("Enter the value of ith bit which you want to extract from the integer: ");
-					scanf ("%d", &i);
-					printf ("The requested bit is : %d\n" , check_random_bit(u, i));
+					scanf ("%lu", &i);
+					printf ("The requested bit is : %lu\n" , check_random_bit(u, i));
 			break;
 
 			case 3: printf ("\n=====================================================\n");
