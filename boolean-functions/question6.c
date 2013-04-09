@@ -10,7 +10,7 @@
 
 bool is_balanced ( ulong *f, ulong m ) {
 	ulong count = table_hamming_weight (f, m);
-	if ( count == ( ( 1ul << m ) / 2) )
+	if ( count == ( ( 1UL << m ) / 2) )
 		return 1;
 	return 0;
 }
@@ -20,14 +20,12 @@ int main () {
 	ulong m, i;
 	printf ("Enter the value of m: ");
 	scanf ("%lu", &m);
-	
 	if ( m == 0) {
 		printf ("You must atleast give a value\n");
 		exit(0);
 	}
-	ulong n = 1ul << m;
-	f = ( ulong * ) malloc ( n * sizeof ( ulong ) );
-
+	f = allocate_table (m);
+	ulong n = 1UL << m;
 	for ( i = 0; i < n; i++ ) {
 		printf ("Enter the [%lu] boolean value of the boolean function: ", i);
 		scanf ("%lu", &f[i]);
@@ -36,12 +34,10 @@ int main () {
 			i = i - 1;
 		}	
 	}
-
 	if ( is_balanced (f, m) )
 		printf ("Given function is balanced\n");
 	else
 		printf ("Given function is not balanced\n");
-
 	free(f);
 	return 0;
 }

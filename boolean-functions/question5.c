@@ -7,7 +7,7 @@
 
 ulong hamming_distance ( ulong *f1, ulong *f2, ulong m ) {
 	ulong i, count = 0;
-	ulong n = 1ul << m;
+	ulong n = 1UL << m;
 	for ( i = 0; i < n; i++ )
 		count = count + ( f1[i]^f2[i] );
 	return count;
@@ -17,13 +17,11 @@ int main () {
 	ulong *f1;
 	ulong *f2;
 	ulong i, j, m; /* M is the number of variables in the boolean function */
-
 	printf ("Enter the number of variables in your boolean function: ");
 	scanf ("%lu", &m);
-	ulong n = 1ul << m;
-	f1 = ( ulong * ) malloc ( n * sizeof ( ulong ) );
-	f2 = ( ulong * ) malloc ( n * sizeof ( ulong ) );
-
+	f1 = allocate_table (m);
+	f2 = allocate_table (m);
+	ulong n = 1UL << m;
 	for ( j = 0; j < 2; j++ ) {
 		for ( i = 0; i < n; i++ ) {
 			printf ("Enter the [%lu] boolean value of [%lu] boolean table: ", i, j);
@@ -43,10 +41,8 @@ int main () {
 			}
 		}
 	}
-
 	printf ("\nTruth Table\n");
 	printf ("f1\tf2\n");
-
 	for ( i = 0; i < n; i++ ) {
 		for ( j = 0; j < 2; j++ ) {
 			if ( j == 0 )
@@ -55,7 +51,6 @@ int main () {
 				printf ("%lu\n", f2[i]);
 		}
 	}
-
 	printf ("\nThe hamming distance of the two tables is %lu\n", hamming_distance(f1, f2, m));	
 	free(f1);
 	free(f2);

@@ -12,9 +12,9 @@ int main () {
 	
 	printf ("Enter the number of variables in the boolean function: ");
 	scanf ("%lu", &m);
-	ulong n = 1ul << m;
-	table_f1 = ( ulong * ) malloc ( n * sizeof (ulong) );
-	table_f2 = ( ulong * ) malloc ( n * sizeof (ulong) );
+	table_f1 = allocate_table (m);
+	table_f2 = allocate_table (m);
+	ulong n = 1UL << m;
 
 	for ( j = 0; j < 2; j++) {
 		for ( i = 0; i < n; i++) {
