@@ -10,7 +10,7 @@
 
 bool is_balanced ( ulong *f, ulong m ) {
 	ulong count = table_hamming_weight (f, m);
-	if ( count == ( pow2 (m) / 2) )
+	if ( count == ( ( 1ul << m ) / 2) )
 		return 1;
 	return 0;
 }
@@ -25,12 +25,10 @@ int main () {
 		printf ("You must atleast give a value\n");
 		exit(0);
 	}
+	ulong n = 1ul << m;
+	f = ( ulong * ) malloc ( n * sizeof ( ulong ) );
 
-        // this is wrong (look at your malloc in question5), you should
-        // have a function 'allocate_table(int m)' and write 'f=allocate_table(m)'
-	f = ( ulong * ) malloc ( pow2 (m) * sizeof ( ulong ) );
-
-	for ( i = 0; i < pow2 (m); i++ ) {
+	for ( i = 0; i < n; i++ ) {
 		printf ("Enter the [%lu] boolean value of the boolean function: ", i);
 		scanf ("%lu", &f[i]);
 		if ( f[i] != 0 && f[i] != 1 ) {
