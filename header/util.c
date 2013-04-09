@@ -18,7 +18,7 @@ ulong pow2 ( int power ) {
 
 /* A function to invert the sign of a binary */
 int sign ( ulong e ) {
-	return 1 - 2 * e;
+	return 1 -  ( 2 * ( e % 2 ) );
 }
 
 /* A function to calculate the scalar product of two vectors */
@@ -47,15 +47,17 @@ ulong * allocate_table ( ulong m ) {
 /* A function to calculate the product of two boolean vectors 
  * given as integers */
 // I don't get this function!
-bool integer_product ( ulong a, ulong x ) {
+// This is the multiplication of two UL using bitwise operators
+// I don't whether it is an efficient way or not!
+ulong integer_product ( ulong a, ulong x ) {
 	ulong result = 0;
-	while ( x > 0 ) {
-		if ( x & 1 )
-			result = result + a; // ??
-		a = a << 1; // ??
-		x = x >> 1;
+	while ( x != 0UL ) { 		// Iterate till x == 0
+		if ( x & 1UL )			// 
+			result = result + a; // add a to result if x is odd
+		a = a << 1UL;			 // Left shift the value in a by one. i.e multiplies a by 2 each tim
+		x = x >> 1UL;			// right shift the value in x by one
 	}
-	return result % 2; // ??
+	return result; // as we need to pass a binary value to sign function, I thought its better to send it from here itself
 }
 
 /* A function to computer the FastWalshTransform 
