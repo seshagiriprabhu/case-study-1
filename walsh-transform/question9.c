@@ -9,6 +9,14 @@
 #include "header.h"
 /* STATUS : COMPLETE */
 
+// I am having a question regarding the return type of this 
+// function. m is an unsigned long max = (2**32) - 1
+// where as -( 2**31 )  <= long <= ( 2**31 ) - 1
+// long long can hold values within range 
+// ( - ( 2**63 ) <= X <= ( 2**63 ) - 1
+// So which data type will best fit for returning a value
+// within the range - ( 2**m ) <= X <= ( 2**m )?
+
 long WalshTransform ( ulong *f, ulong a, ulong m ) {
 	ulong x, product;
 	long output = 0;
