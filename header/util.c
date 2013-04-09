@@ -1,5 +1,4 @@
 #include "header.h"
-
 /*-----------------Functions------------------*/
 
 // I don't remember exactly the rules for C,
@@ -15,7 +14,6 @@
 /* A function to calculate the hamming weight of a given number */
 ulong hamming_weight ( ulong u ) {
 	ulong count = 0;
-
 	while ( u > 0 ) {
 		if ( ( u & 1) == 1 )
 			count = count + 1;
@@ -34,20 +32,40 @@ int sign ( ulong e ) {
 	return 1 - 2 * e;
 }
 
-//  this algo is good, but we represent binary vectors
-//  as unsigned longs, not as arrays of unsigned longs
-//  (this is the case only for truthtables)
-
 /* A function to calculate the scalar product of two vectors */
 ulong scalar_product ( ulong *table_f1, ulong *table_f2, ulong m ) {
 	ulong i, product = 0;
-	for ( i = 0; i < pow2 (m); i++ ) 
+	ulong n = 1ul << m;
+	for ( i = 0; i < n; i++ ) 
 		product = product + ( table_f1[i] * table_f2[i] );
 	return product;
 }
 
+/* A function to calculate the hamming weight of a boolean function */
+ulong table_hamming_weight ( ulong *val, ulong m ) {
+	ulong i, total_weight = 0;
+	ulong n = 1ul << n;
+	for ( i = 0; i < n; i++ ) 
+			total_weight  = total_weight + val[i];
+	return total_weight;
+}
+
+/* A function to calculate the product of two boolean vectors 
+ * given as integers */
+bool integer_product ( ulong a, ulong x ) {
+	ulong result = 0;
+	while ( x > 0 ) {
+		if ( x & 1 )
+			result = result + a;
+		a = a << 1;
+		x = x >> 1;
+	}
+	return result % 2;
+}
+
 /* A function to computer the FastWalshTransform 
  * Copied from question11 */
+/* STATUS: INCOMPLETE */
 int * walsh_transform ( int *f, int m ) {
 	int *temp_f;
 	int count = 0, temp = m;
@@ -82,11 +100,4 @@ int * walsh_transform ( int *f, int m ) {
 	}
 	free (temp_f);
 	return temp_f;
-}
-
-ulong table_hamming_weight ( ulong *val, ulong m ) {
-	ulong i, total_weight = 0;
-	for ( i = 0; i < pow2 (m); i++ ) 
-			total_weight  = total_weight + val[i];
-	return total_weight;
 }
