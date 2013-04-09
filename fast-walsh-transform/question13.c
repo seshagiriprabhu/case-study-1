@@ -2,15 +2,15 @@
  * Implementation of non-linearity funciton */
 
 #include "header.h"
-/* STATUS: INCOMPLETE */
+/* STATUS: COMPLETE */
 
 /* A function to calculate the non-linerity of given boolean funciton  */
-int nonlinearity ( int * u, UL m ) {
+int nonlinearity ( int * u, ulong m ) {
 	int *walshOutput;
-	UL n = pow2 (m);
+	ulong n = 1ul << m;
 	int tempMax = 0;
-	UL i;
-	walshOutput = ( int * ) malloc ( n * sizeof ( int ) );
+	ulong i;
+	walshOutput = ( int * ) malloc ( n * sizeof (int) );
 	walshOutput = walsh_transform(u, m);
 	for ( i = 0; i < n; i++ ) {
 		if ( tempMax < walshOutput[i] )
@@ -21,11 +21,11 @@ int nonlinearity ( int * u, UL m ) {
 
 int main ( ) {
 	int *u;
-	UL m, i;
+	ulong m, i;
 	printf ("Enter the number of variables in the boolean function: ");
 	scanf ("%lu", &m);
-	UL n = pow2 (m);
-	u = ( int * ) malloc ( n * sizeof ( int ) );
+	ulong n = 1ul << m;
+	u = ( int * ) malloc ( n * sizeof (int) );
 	
 	for ( i = 0; i < n; i++ ) {
 		printf ("Enter the [%lu]th boolean value of boolean function: ", i);
