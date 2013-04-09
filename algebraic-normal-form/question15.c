@@ -2,30 +2,32 @@
  * An implememtation of a  function monomial_eval(M, x) which evaluates 
  * a monomial M at point x ∈ (F2)^m */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "header.h"
+/* STATUS: INCOMPLETE */
 
 /* A function to evaluate a Monomial */
-void monomial_eval ( unsigned int M, int x ) {
+bool monomial_eval ( ulong M, ulong x ) {
 	if ( ( M >> x ) & 1 )
-		printf ("%d is a variable of the given monomial %d\n", x, M);
-
+		return 1;
 	else
-		printf ("%d is not a variable of the given  monomial %d\n", x, M);	
+		return 0;
 }
-	
 
-int main ( int argc, char ** argv ) {
-	unsigned int M;
-	int x;
+int main ( ) {
+	ulong M;
+	ulong x;
 
 	printf ("Enter the monomial: ");
-	scanf ("%du", &M);
+	scanf ("%lu", &M);
 
 	printf ("Enter the value of x: ");
-	scanf ("%d", &x);
+	scanf ("%lu", &x);
 
-	monomial_eval (M, x);
+	if ( monomial_eval (M, x) )
+		printf ("%lu is a variable of the given monomial %lu\n", x, M);
+	else
+		printf ("%lu is not a variable of the given  monomial %lu\n", x, M);	
+
 	return 0;
 }
 

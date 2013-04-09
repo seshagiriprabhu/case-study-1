@@ -2,42 +2,19 @@
  * A function taking an ANF and computes the maximum 
  * degree of its monomial */
 
-#include <stdio.h>
-#include <stdlib.h>
-
-/* A function to calculate the power of a given number */
-int powerFunction ( int number, int power ) {
-	if ( power == 0 )
-		return 1;
-
-	else 
-		return number << ( power - 1 );
-}
-
-/* A function to find the hamming weight */
-int hamming_weight ( int number ) {
-	int count = 0;
-
-	while ( number > 0 ) {
-
-		if ( ( number & 1 ) == 1 )
-			count = count + 1;
-
-		number = number >> 1;
-	}
-
-	return count;
-}
+#include "header.h"
+/* STATUS: INCOMPLETE */
 
 /* A function to compute ANF */
-void ANF ( unsigned int * M, int m) {
-	int i, j = 0, tempMAX, index = 0;
+void ANF ( ulong *M, ulong m ) {
+	ulong i, j = 0;
+	int tempMAX, index = 0;
+	ulong n = 1ul << m;
+	ulong * count, * hammingWeight;
+	count = ( ulong * ) malloc ( n * sizeof (m) );
+	hammingWeight = ( ulong * ) malloc ( n * sizeof (m) );
 
-	int * count, * hammingWeight;
-	count = ( int * ) malloc ( powerFunction (2, m) * sizeof (m) );
-	hammingWeight = ( int * ) malloc ( powerFunction (2, m) * sizeof (m) );
-
-	for ( i = 0; i < powerFunction (2, m); i++ ) {
+	for ( i = 0; i < n; i++ ) {
 		if ( M[i] == 1 )
 			count[i] = i + 1;
 
@@ -45,13 +22,13 @@ void ANF ( unsigned int * M, int m) {
 			count[i] = 0;
 	}	
 
-	for ( i = 0; i < powerFunction (2, m); i++ ) {
+	for ( i = 0; i < n; i++ ) {
 		if ( count[i] > 1 )
 			hammingWeight[i] = hamming_weight (count[i]);
 	}
 
-	tempMAX =hammingWeight[0];
-	for ( i = 0; i < powerFunction (2, m); i++ ) {
+	tempMAX = hammingWeight[0];
+	for ( i = 0; i < n; i++ ) {
 		if ( tempMAX < hammingWeight[i] ) {
 			tempMAX = hammingWeight[i];
 			index = i + 1;
@@ -59,7 +36,7 @@ void ANF ( unsigned int * M, int m) {
 	}
 	
 	printf ("This boolean function: ");
-	for ( i = 0; i < powerFunction(2, m); i++ ) {
+	for ( i = 0; i < n; i++ ) {
 
 		while ( hammingWeight[i] > 0 ) {
 
@@ -81,18 +58,22 @@ void ANF ( unsigned int * M, int m) {
 
 }
 
-int main ( int argc, char ** argv ) {
-	unsigned int * M;
-	int m, i;
+int main ( ) {
+	ulong * M;
+	ulong m, i;
 
 	printf ("Enter the value of m: ");
-	scanf ("%d", &m);
+	scanf ("%lu", &m);
+	ulong n = 1ul << m;
+	M = ( ulong * ) malloc ( n * sizeof (ulong) );
 
-	M = ( unsigned int * ) malloc ( powerFunction(2, m) * sizeof ( unsigned int) );
-
-	for ( i = 0; i < powerFunction(2, m); i++ ) {
-		printf ("Enter the value of [%d]th boolean function: ", i + 1);
-		scanf ("%du", &M[i]);
+	for ( i = 0; i < n; i++ ) {
+		printf ("Enter the value of [%lu]th boolean function: ", i);
+		scanf ("%lu", &M[i]);
+		if ( M[i] != 0 && M[i] != 1 ) {
+			printf ("Program accepts only binary values [0/1]\n");
+			i = i - 1;
+		}
 	}
 
 	ANF (M, m);

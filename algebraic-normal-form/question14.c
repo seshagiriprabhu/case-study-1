@@ -6,22 +6,22 @@
 /* STATUS: INCOMPLETE */
 
 /* A function to implement the monomial degree */
-UL * monomial_degree ( UL * M, UL m ) {
-	UL i;
-	for ( i = 0; i < pow2 (m); i++ ) 
+ulong * monomial_degree ( ulong * M, ulong m ) {
+	ulong i;
+	for ( i = 0; i < ( 1ul << m ) ; i++ ) 
 		printf ("The monomial degree of [%lu] is %lu\n", M[i], hamming_weight (M[i]));
 }
 
 int main () {
-	UL * M;
-	UL m, i;
-
+	ulong * M;
+	ulong m, i;
+	ulong n = 1ul << m;
 	printf ("Enter the number of variables in your boolean function: ");
 	scanf ("%lu", &m);
 
-	M = ( UL * ) malloc ( pow2 (m) * sizeof ( UL ) );
+	M = ( ulong * ) malloc ( n * sizeof ( ulong ) );
 
-	for ( i = 0; i < pow2 (m); i++) {
+	for ( i = 0; i < n; i++) {
 		printf ("Enter the [%lu] monomial: ", i);
 		scanf ("%lu", &M[i]);
 	}
