@@ -7,7 +7,7 @@
 */
 
 #include "header.h"
-/* STATUS : INCOMPLETE */
+/* STATUS : COMPLETE */
 
 long WalshTransform ( ulong *f, ulong a, ulong m ) {
 	ulong x, product;
