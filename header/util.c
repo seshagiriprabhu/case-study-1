@@ -52,15 +52,16 @@ ulong table_hamming_weight ( ulong *val, ulong m ) {
 
 /* A function to calculate the product of two boolean vectors 
  * given as integers */
+// I don't get this function!
 bool integer_product ( ulong a, ulong x ) {
 	ulong result = 0;
 	while ( x > 0 ) {
 		if ( x & 1 )
-			result = result + a;
-		a = a << 1;
+			result = result + a; // ??
+		a = a << 1; // ??
 		x = x >> 1;
 	}
-	return result % 2;
+	return result % 2; // ??
 }
 
 /* A function to computer the FastWalshTransform 
