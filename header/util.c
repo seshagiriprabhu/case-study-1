@@ -1,21 +1,10 @@
 #include "header.h"
-/*-----------------Functions------------------*/
-
-// I don't remember exactly the rules for C,
-// as I use C++, but I think putting function definition
-// in header files is bad, at least without marking them
-// as 'static' ('inline' in C++). You will have a 'multiple
-// definition error' if you build a program made of 2+ object
-// files including the code for these functions.
-// The usual way to do is to put only declaration of these
-// functions in the header file, put their definitions
-// in a .c file, say "util.c", and build your programs
 
 /* A function to calculate the hamming weight of a given number */
 ulong hamming_weight ( ulong u ) {
 	ulong count = 0;
 	while ( u > 0 ) {
-		if ( ( u & 1) == 1 )
+		if ( u & 1UL )
 			count = count + 1;
 		u = u >> 1;
 	}
@@ -24,7 +13,7 @@ ulong hamming_weight ( ulong u ) {
 
 /* A function to calculate the power of 2 */
 ulong pow2 ( int power ) {
-	return 1ul << power;
+	return 1UL << power;
 }
 
 /* A function to invert the sign of a binary */
@@ -35,7 +24,7 @@ int sign ( ulong e ) {
 /* A function to calculate the scalar product of two vectors */
 ulong scalar_product ( ulong *table_f1, ulong *table_f2, ulong m ) {
 	ulong i, product = 0;
-	ulong n = 1ul << m;
+	ulong n = 1UL << m;
 	for ( i = 0; i < n; i++ ) 
 		product = product + ( table_f1[i] * table_f2[i] );
 	return product;
@@ -44,10 +33,15 @@ ulong scalar_product ( ulong *table_f1, ulong *table_f2, ulong m ) {
 /* A function to calculate the hamming weight of a boolean function */
 ulong table_hamming_weight ( ulong *val, ulong m ) {
 	ulong i, total_weight = 0;
-	ulong n = 1ul << n;
+	ulong n = 1UL << m;
 	for ( i = 0; i < n; i++ ) 
 			total_weight  = total_weight + val[i];
 	return total_weight;
+}
+
+/* Allocate binary vector table */
+ulong * allocate_table ( ulong m ) {
+	return ( ( ulong * ) malloc ( ( 1UL << m ) * sizeof (ulong) ));
 }
 
 /* A function to calculate the product of two boolean vectors 
@@ -70,7 +64,7 @@ bool integer_product ( ulong a, ulong x ) {
 int * walsh_transform ( int *f, int m ) {
 	int *temp_f;
 	int count = 0, temp = m;
-	ulong n = pow2 (m);
+	ulong n = 1UL << m;
 	ulong u, j;
 	ulong split, tempSplit;
 	temp_f = ( int * ) malloc ( n * sizeof(int) );
