@@ -7,27 +7,14 @@
 /* Function returns the indice of the first non-zero value
    in the given unsigned integer						*/
 ulong find_indice ( ulong u) {
-	if (u == 0ul)
+	if (u == 0UL)
 		return ULONG_MAX;
 	ulong indice = 0;
-	while (!(u & 1)) {
+	while (!(u & 1UL)) {
 		indice = indice + 1;
 		u = u >> 1;
 	}
 	return indice;
-}
-
-// To represent it, we set it to ULONG_MAX. This value has the nice
-// property that ULONG_MAX+1UL == 0. So I propose the following function,
-// do check that it works (is it an optimal solution?) :
-// Yes, I agree!
-ulong proposed_find_indice(ulong u) {
-    if (u == 0UL)
-        return ULONG_MAX;
-    ulong indice = 0;
-    for (; !(u & 1UL); u >>= 1)
-            ++indice;
-    return indice;
 }
 
 int main () {
