@@ -8,7 +8,7 @@
 #include "header.h"
 
 int main () {
-	unsigned long u;
+	ulong u;
 	int choice;
 	do {
 		printf ( "==========================================\n");
