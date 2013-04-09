@@ -7,13 +7,13 @@
 int * FastWalshTransform ( int *f, int m ) {
 	int *temp_f;
 	int count = 0, temp = m;
-	UL n = pow2 (m);
-	UL u, j;
-	UL split, tempSplit;
-	temp_f = ( int * ) malloc ( n * sizeof(int) );
+	ulong n = 1ul << m;
+	ulong u, j;
+	ulong split, tempSplit;
+	temp_f = ( int * ) malloc ( n * sizeof (int) );
 
 	for ( u = 0; u < n; u++ ) 
-		temp_f[u] = f[u] = sign(f[u]);
+		temp_f[u] = f[u] = ( 1 - 2 * f[u] );
 
 	temp = temp - 1;
 	while ( temp > -1 ) {	
@@ -45,11 +45,11 @@ int * FastWalshTransform ( int *f, int m ) {
 int main ( ) {
 	int *f;
 	int *fastWalsh_f;
-	UL m, i;
+	ulong m, i;
 	printf ("Enter the number of variables in your boolean function : ");
 	scanf ("%lu", &m);
 
-	UL n = pow2 (m);
+	ulong n = 1ul << m;
 	f = ( int * ) malloc ( n * sizeof ( int ) );
 	fastWalsh_f = ( int * ) malloc ( n * sizeof ( int ) );
 
