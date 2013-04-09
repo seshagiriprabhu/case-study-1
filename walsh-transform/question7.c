@@ -12,12 +12,12 @@ int main () {
 	
 	printf ("Enter the number of variables in the boolean function: ");
 	scanf ("%lu", &m);
-
-	table_f1 = ( ulong * ) malloc ( pow2 (m) * sizeof (ulong) );
-	table_f2 = ( ulong * ) malloc ( pow2 (m) * sizeof (ulong) );
+	ulong n = 1ul << m;
+	table_f1 = ( ulong * ) malloc ( n * sizeof (ulong) );
+	table_f2 = ( ulong * ) malloc ( n * sizeof (ulong) );
 
 	for ( j = 0; j < 2; j++) {
-		for ( i = 0; i < pow2 (m); i++) {
+		for ( i = 0; i < n; i++) {
 			if ( j == 0 ) {
 				printf ("Enter the [%lu] boolean value of first binary vector: ", i);
 				scanf ("%lu", &table_f1[i]);
@@ -40,7 +40,7 @@ int main () {
 	printf ("\nTruth Table\n");
 	printf ("f1\tf2\tProduct\n");
 
-	for ( i = 0; i < pow2 (m); i++ ) {
+	for ( i = 0; i < n; i++ ) {
 		for ( j = 0; j < 2; j++ ) {
 			if ( j == 0 )
 				printf ("%lu\t", table_f1[i]);

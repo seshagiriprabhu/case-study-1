@@ -12,7 +12,7 @@
 ulong * ulong_to_binary_array ( ulong x, ulong m ) {
 	ulong i = 0, j; 
 	ulong *xBinary;
-	ulong n = pow2 (m);
+	ulong n = 1ul << m;
 	xBinary = ( ulong * ) malloc ( n * sizeof ( ulong ));
 	while ( x > 0 ) {
 		if ( x & 1 ) 
@@ -54,7 +54,7 @@ int main () {
 
 	printf ("Enter the number of variables in the boolean function: ");
 	scanf ("%lu", &m);
-	ulong n = pow2 (m);
+	ulong n = 1ul << m;
 
 	table_f1 = ( ulong * ) malloc ( n * sizeof (ulong) );
 	a =  ( ulong * ) malloc ( n * sizeof (ulong) );
