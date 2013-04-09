@@ -17,14 +17,31 @@
 // So which data type will best fit for returning a value
 // within the range - ( 2**m ) <= X <= ( 2**m )?
 
+// I was a bit short in my comment last time.
+// We don't mind the type of m, far more important is
+// the type of n=1ul << m. Indeed, m could be a char,
+// it just need to be able to count the number of bits in
+// n (i.e. 32 or 64 typically).
+// So n can represent the length of a truth table of
+// upto 31 variables (1ul<<32 is undefined
+// if sizeof(ulong)==4). But you are right,
+// 2**31 can not be represented by a long. 
+// so either use a long long, or limit your function
+// to m=30 variables, with a documented precondition
+// In practice, this limitation is not a problem,
+// there will be other constraints (complexity of algorithms)
+// which will limit (further) the number of variables of the functions
+// we can study.
+
 long WalshTransform ( ulong *f, ulong a, ulong m ) {
+        assert(m <= 30);
 	ulong x, product;
 	long output = 0;
 	ulong n = 1ul << m;
 
 	for ( x = 0; x < n; x++ ) { 
 		product = integer_product (a, x); /* Defined in utils.c*/
-		output = output +  sign ( (f[x] + product) % 2 ); 
+		output = output +  sign ( (f[x] + product) % 2 ); // '%2' like in utils.c...
 	}
 	return output;
 }

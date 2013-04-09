@@ -7,13 +7,13 @@
 
 /* This function checks whether the first binary is position is 0 or 1 */
 bool check_first_bit ( ulong bit ) {
-	return ( bit & 1 );
+	return ( bit & 1UL );
 }
 
 /* This function checks the value of the given integer's ith the binary 
    position */
 bool check_random_bit ( ulong bit,  ulong i ) {
-	return ( ( bit >> i ) & 1 );
+	return ( ( bit >> i ) & 1UL );
 }
 
 int main () {

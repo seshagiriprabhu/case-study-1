@@ -12,7 +12,8 @@ int main ( ) {
 
 	printf ("Enter the number of variables in the boolean function: ");
 	scanf ("%lu", &m);
-	
+        // I said that you need to write a function allocate_table!
+        // this line is wrong (I didn't notice the error last time)
 	table_f = ( ulong * ) malloc ( pow2 (m) * sizeof ( ulong *) );
 
 	for ( i = 0; i < pow2 (m); i++) {
