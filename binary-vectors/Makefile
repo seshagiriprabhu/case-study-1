@@ -40,7 +40,6 @@ OBJECTS/question%.o : 	question%.c $(DEPS)
 
 $(UOBJ)				:	$(UPROG) $(DEPS)
 						$(CC) $(INC) -o $@ $< $(CFLAG)
-						echo $(DEPS)
 
 clean				:
 						rm -rf $(EXECS) OBJECTS
