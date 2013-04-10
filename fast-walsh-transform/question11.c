@@ -3,14 +3,15 @@
 */
 #include "header.h"
 /* STATUS: INCOMPLETE */
+
 /* A function to computer the FastWalshTransform */
-int * FastWalshTransform ( int *f, int m ) {
-	int *temp_f;
-	int count = 0, temp = m;
-	ulong n = 1ul << m;
+long * FastWalshTransform ( long *f, ulong m ) {
+	long *temp_f;
+	long count = 0, temp = m;
+	ulong n = 1UL << m;
 	ulong u, j;
 	ulong split, tempSplit;
-	temp_f = ( int * ) malloc ( n * sizeof (int) );
+	temp_f = allocate_long_table (m);
 
 	for ( u = 0; u < n; u++ ) 
 		temp_f[u] = f[u] = ( 1 - 2 * f[u] );
@@ -23,7 +24,7 @@ int * FastWalshTransform ( int *f, int m ) {
 		for ( u = 0; u < n; u = u + split ) {
 			for ( j = u; j < u + split; j++ ) {
 				if ( j < tempSplit ) 
-					temp_f[j] =  f[j] + f[ ( j + split ) % n ] ; 
+					temp_f[j] =  f[j] + f[ ( j + split ) ] ; 
 				else  
 					temp_f[j] = f [ j - split ] - f[j]; 
 			}
@@ -43,28 +44,28 @@ int * FastWalshTransform ( int *f, int m ) {
 }
 
 int main ( ) {
-	int *f;
-	int *fastWalsh_f;
+	long *f;
+	long *fastWalsh_f;
 	ulong m, i;
 	printf ("Enter the number of variables in your boolean function : ");
 	scanf ("%lu", &m);
-
-	ulong n = 1ul << m;
-	f = ( int * ) malloc ( n * sizeof ( int ) );
-	fastWalsh_f = ( int * ) malloc ( n * sizeof ( int ) );
+	assert (m <= 30);
+	ulong n = 1UL << m;
+	f = allocate_long_table (m);
+	fastWalsh_f = allocate_long_table (m);
 
 	for ( i = 0; i < n; i++ ) {
 		printf ("Enter the value of [%lu] of boolean funciton: ", i);
-		scanf  ("%d", &f[i]);
+		scanf  ("%ld", &f[i]);
 	}
 
 	fastWalsh_f = FastWalshTransform (f, m);
 
 	for ( i = 0; i < n; i++ ) {
 		if ( i == 0 )
-			printf ("\n%d\t", fastWalsh_f[i]);
+			printf ("\n%ld\t", fastWalsh_f[i]);
 		else
-			printf ("%d\t", fastWalsh_f[i]);
+			printf ("%ld\t", fastWalsh_f[i]);
 	}
 	printf ("\n");
 	free (f);
