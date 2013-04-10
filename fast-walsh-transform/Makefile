@@ -1,17 +1,18 @@
 # Makefile
 
 CC = gcc
-HEADER = ../header/
-OBJECT_DIR = OBJECTS
-UOBJ = $(HEADER)util.o
+HEADER = ../header
+UOBJ = $(HEADER)/util.o
+UPROG = $(HEADER)/util.c
 CFLAG = -c -O0 -fno-dce -static -Wall -W
 INC = -I$(HEADER)
 
-EXECS := $(addprefix question, 11 13)
-OBJS := $(addprefix OBJECTS/, $(addsuffix .o, $(EXECS))))
+_DEPS = header.h
+DEPS = $(patsubst %, $(HEADER)/%, $(_DEPS))
+EXECS := $(addprefix question, 11 13) 
+OBJS := $(addprefix OBJECTS/, $(addsuffix .o, $(EXECS)))
 
 all 				: 	$(EXECS) 
-						test -d $(OBJECT_DIR) || mkdir -p $(OBJECT_DIR)
 
 OBJECTS				:
 						mkdir -p $@
@@ -19,15 +20,16 @@ OBJECTS				:
 $(OBJS) 			: 	| OBJECTS
 
 question%			:	OBJECTS/question%.o $(UOBJ)
-						$(CC) -o $@ $< $(UOBJ)
+						$(CC) -o $@ $^
 
-UOBJ				:	$(HEADER)/util.c
-						$(CC) $(INC) -o $(HEADER)/util.c $(CLFAG)
+OBJECTS/question%.o : 	question%.c $(DEPS)
+						$(CC) $(INC) -o $@ $< $(CFLAG)
 
-OBJECTS/question%.o : 	question%.c $(HEADER)/header.h $(HEADER)/util.c
-						$(CC) $(INC) -o  $@ $< $(CFLAG)
+$(UOBJ)				:	$(UPROG) $(DEPS)
+						$(CC) $(INC) -o $@ $< $(CFLAG)
+						echo $(DEPS)
 
-clean				: 
-						rm -rf OBJECTS $(EXECS) 
+clean				:
+						rm -rf $(EXECS) OBJECTS
 
-.PHONY 				: 	all clean
+.PHONY 				: 	clean all
