@@ -68,13 +68,14 @@ ulong integer_product ( ulong a, ulong x ) {
 /* A function to computer the FastWalshTransform 
  * Copied from question11 */
 /* STATUS: INCOMPLETE */
-int * walsh_transform ( int *f, int m ) {
-	int *temp_f;
-	int count = 0, temp = m;
+long * walsh_transform ( long *f, long m ) {
+	long *temp_f;
+	assert (m <= 30);
+	long count = 0, temp = m;
 	ulong n = 1UL << m;
 	ulong u, j;
 	ulong split, tempSplit;
-	temp_f = ( int * ) malloc ( n * sizeof(int) );
+	temp_f = allocate_long_table (m);
 
 	for ( u = 0; u < n; u++ ) 
 		temp_f[u] = f[u] = sign(f[u]);
