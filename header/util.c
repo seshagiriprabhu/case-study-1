@@ -68,7 +68,7 @@ ulong integer_product ( ulong a, ulong x ) {
 /* A function to computer the FastWalshTransform 
  * Copied from question11 */
 /* STATUS: INCOMPLETE */
-long * walsh_transform ( long *f, long m ) {
+long * walsh_transform ( long *f, ulong m ) {
 	long *temp_f;
 	assert (m <= 30);
 	long count = 0, temp = m;
