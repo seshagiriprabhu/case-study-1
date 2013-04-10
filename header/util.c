@@ -39,9 +39,14 @@ ulong table_hamming_weight ( ulong *val, ulong m ) {
 	return total_weight;
 }
 
-/* Allocate binary vector table */
+/* Allocates a ulong binary vector table */
 ulong * allocate_table ( ulong m ) {
 	return ( ( ulong * ) malloc ( ( 1UL << m ) * sizeof (ulong) ));
+}
+
+/* Allocates a long binary vector table - only used for fast walsh */
+long * allocate_long_table ( ulong m ) {
+	return ( ( long * ) malloc ( ( 1UL << m ) * sizeof (long) ));
 }
 
 /* A function to calculate the product of two boolean vectors 
