@@ -51,18 +51,21 @@ long * allocate_long_table ( ulong m ) {
 
 /* A function to calculate the product of two boolean vectors 
  * given as integers */
-// I don't get this function!
-// This is the multiplication of two UL using bitwise operators
-// I don't whether it is an efficient way or not!
 ulong integer_product ( ulong a, ulong x ) {
 	ulong result = 0;
-	while ( x != 0UL ) { 		// Iterate till x == 0
-		if ( x & 1UL )			// 
-			result = result + a; // add a to result if x is odd
-		a = a << 1UL;			 // Left shift the value in a by one. i.e multiplies a by 2 each tim
-		x = x >> 1UL;			// right shift the value in x by one
+	while ( x != 0UL || a != 0UL ) { 	
+		if ( x & 1UL && a & 1UL )	
+			result = result + 1;
+		a = a >> 1UL;			
+		x = x >> 1UL;	
 	}
-	return result; // as we need to pass a binary value to sign function, I thought its better to send it from here itself
+	return result;
+}
+
+/* Another approach to the integer product */
+ulong integer_product_alternative ( ulong a, ulong x ) {
+	ulong result = a & x;
+	return hamming_weight (result);
 }
 
 /* A function to computer the FastWalshTransform 
