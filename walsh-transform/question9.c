@@ -15,8 +15,8 @@ long WalshTransform ( ulong *f, ulong a, ulong m ) {
 	long output = 0;
 	ulong n = 1UL << m;
 	for ( x = 0; x < n; x++ ) { 
-		product = integer_product (a, x); /* Defined in utils.c*/
-		output = output +  sign (f[x] + product); // now the sign function takes cares of %2
+		product = integer_product (a, x);
+		output = output +  sign (f[x] + product);
 	}
 	return output;
 }
