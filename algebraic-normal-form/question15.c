@@ -5,14 +5,6 @@
 #include "header.h"
 /* STATUS: INCOMPLETE */
 
-/* A function to evaluate a Monomial */
-bool monomial_eval ( ulong M, ulong x ) {
-	if ( ( M >> x ) & 1 )
-		return 1;
-	else
-		return 0;
-}
-
 int main ( ) {
 	ulong M;
 	ulong x;
@@ -30,4 +22,3 @@ int main ( ) {
 
 	return 0;
 }
-
