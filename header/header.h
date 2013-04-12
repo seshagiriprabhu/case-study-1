@@ -15,6 +15,8 @@ typedef int bool;
 typedef unsigned long ulong;
 typedef long long llong;
 /*-------------Function Declarations----------*/
+bool check_first_bit (ulong bit);
+bool check_random_bit (ulong bit, ulong i);
 ulong hamming_weight (ulong u);
 ulong pow2 (int power);
 int sign (ulong e);
@@ -25,4 +27,5 @@ ulong integer_product (ulong vector1, ulong vector2);
 long * walsh_transform (long *f, ulong m);
 ulong table_hamming_weight (ulong *val, ulong m);
 ulong monomial_degree (ulong M);
+bool monomial_eval (ulong M, ulong x);
 #endif

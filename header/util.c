@@ -1,5 +1,16 @@
 #include "header.h"
 
+/* This function checks whether the first binary is position is 0 or 1 */
+bool check_first_bit ( ulong bit ) {
+	return ( bit & 1UL );
+}
+
+/* This function checks the value of the given integer's ith the binary 
+   position */
+bool check_random_bit ( ulong bit,  ulong i ) {
+	return ( ( bit >> i ) & 1UL );
+}
+
 /* A function to calculate the hamming weight of a given number */
 ulong hamming_weight ( ulong u ) {
 	ulong count = 0;
@@ -94,4 +105,9 @@ long * walsh_transform ( long *f, ulong m1 ) {
 /* A function to implement the monomial degree */
 ulong monomial_degree ( ulong M ) {
 	return hamming_weight (M);	
+}
+
+/* A function to evaluate a Monomial */
+bool monomial_eval ( ulong M, ulong x ) {
+	return check_random_bit (M, x);
 }
