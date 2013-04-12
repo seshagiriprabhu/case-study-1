@@ -4,11 +4,7 @@
 
 #include "header.h"
 /* STATUS: INCOMPLETE */
-
-/* A function to compute ANF */
-ulong ANF (ulong *M, ulong m) {
-
-}
+/* Functions are defined in util.c */
 
 int main ( ) {
 	ulong * M;
@@ -25,7 +21,7 @@ int main ( ) {
 			i = i - 1;
 		}
 	}
-	printf ("The ANF of given binary function is %lu\n", ANF (M, m);
+	printf ("The ANF of given binary function is %lu\n", ANF (M, m)); 
 	free (M);
 	return 0;
 }
