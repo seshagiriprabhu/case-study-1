@@ -111,3 +111,21 @@ ulong monomial_degree ( ulong M ) {
 bool monomial_eval ( ulong M, ulong x ) {
 	return check_random_bit (M, x);
 }
+
+/* A function to compute ANF */
+ulong ANF (ulong *M, ulong m) {
+	ulong u, tempMax = 0, index = 0, n = 1UL << m;
+	ulong *monomial;
+	monomial = allocate_table (m);
+	for ( u = 0; u < n; u++) {
+		if ( M[u] & 1 ) {
+			monomial[index] = u;
+			if ( tempMax < hamming_weight (monomial[index]) )
+				tempMax = hamming_weight (monomial[index]);
+			index = index + 1;
+		}
+	}
+	free (monomial);
+	return tempMax;
+}
+

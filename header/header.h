@@ -28,4 +28,5 @@ long * walsh_transform (long *f, ulong m);
 ulong table_hamming_weight (ulong *val, ulong m);
 ulong monomial_degree (ulong M);
 bool monomial_eval (ulong M, ulong x);
+ulong ANF (ulong *M, ulong m);
 #endif
