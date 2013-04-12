@@ -9,7 +9,7 @@ INC = -I$(HEADER)
 
 _DEPS = header.h
 DEPS = $(patsubst %, $(HEADER)/%, $(_DEPS))
-EXECS := $(addprefix question, 14 15 16) 
+EXECS := $(addprefix question, 14 15 16 17) 
 OBJS := $(addprefix OBJECTS/, $(addsuffix .o, $(EXECS)))
 
 all 				: 	$(EXECS) 
