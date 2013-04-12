@@ -5,29 +5,11 @@
 #include "header.h"
 /* STATUS: INCOMPLETE */
 
-/* A function to implement the monomial degree */
-ulong * monomial_degree ( ulong * M, ulong m ) {
-	ulong i;
-	for ( i = 0; i < ( 1ul << m ) ; i++ ) 
-		printf ("The monomial degree of [%lu] is %lu\n", M[i], hamming_weight (M[i]));
-}
-
 int main () {
-	ulong * M;
-	ulong m, i;
-	ulong n = 1ul << m;
-	printf ("Enter the number of variables in your boolean function: ");
-	scanf ("%lu", &m);
-
-	M = ( ulong * ) malloc ( n * sizeof ( ulong ) );
-
-	for ( i = 0; i < n; i++) {
-		printf ("Enter the [%lu] monomial: ", i);
-		scanf ("%lu", &M[i]);
-	}
-	
-	monomial_degree(M, m);
-	free(M);
+	ulong M;
+	printf ("Enter the monomial: ");
+	scanf ("%lu", &M);
+	printf ("The monomial degree of the given monomial %lu is %lu\n", M,  monomial_degree(M)); /* Defined in util.c */
 	return 0;
 }
 

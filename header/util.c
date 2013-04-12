@@ -70,40 +70,28 @@ ulong integer_product_alternative ( ulong a, ulong x ) {
 
 /* A function to computer the FastWalshTransform 
  * Copied from question11 */
-/* STATUS: INCOMPLETE */
-long * walsh_transform ( long *f, ulong m ) {
-	long *temp_f;
-	assert (m <= 30);
-	long count = 0, temp = m;
-	ulong n = 1UL << m;
-	ulong u, j;
-	ulong split, tempSplit;
-	temp_f = allocate_long_table (m);
+/* STATUS: COMPLETE */
+long * walsh_transform ( long *f, ulong m1 ) {
+	long  a, m = m1;
+	ulong u, split, tempSplit, n = 1UL << m;
+	split = tempSplit = ( 1UL << (m - 1) );
 
 	for ( u = 0; u < n; u++ ) 
-		temp_f[u] = f[u] = sign(f[u]);
+		f[u] = ( 1 - 2 * f[u] );
 
-	temp = temp - 1;
-	while ( temp > -1 ) {	
-		tempSplit = split = pow2 (temp) ;
-		for ( u = 0; u < n; u = u + split ) {
-			for ( j = u; j < u + split; j++ ) {
-				if ( j < tempSplit ) 
-					temp_f[j] =  f[j] + f[ ( j + split ) % n ] ; 
-				else  
-					temp_f[j] = f [ j - split ] - f[j]; 
-			}
-			count = count + 1;
-			if (count == 2) {
-				tempSplit = tempSplit + pow2 (split);
-				count = 0;
+	for ( m = m - 1; m > -1; m--, tempSplit = split = ( 1UL << m ) ) {
+		for ( u = 0; u < n; u += split, tempSplit += 2 * split ) {
+			for ( ; u < tempSplit; u++ ) {
+				a = f[u] + f[u + (1UL << m)];
+				f[u + (1UL << m)] = f[u] - f[u + (1UL << m)];
+				f[u] = a;
 			}
 		}
-		for ( u = 0; u < n; u++ )
-			f[u] = temp_f[u];
+	} 
+	return f;
+}
 
-		temp = temp - 1;
-	}
-	free (temp_f);
-	return temp_f;
+/* A function to implement the monomial degree */
+ulong monomial_degree ( ulong M ) {
+	return hamming_weight (M);	
 }
