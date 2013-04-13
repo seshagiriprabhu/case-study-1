@@ -108,8 +108,14 @@ ulong monomial_degree ( ulong M ) {
 }
 
 /* A function to evaluate a Monomial */
+// Say if M = 26 (i.e monomial is x1x3x4)
+// x1*x3*x4 = 1 when x1=x3=x4=1 => bin(111) = 7
+// So x should be 7 to return true
 bool monomial_eval ( ulong M, ulong x ) {
-	return check_random_bit (M, x);
+	ulong degree = monomial_degree (M);
+	if ( x == (( 1UL << degree ) - 1) )
+		return 1;
+	return 0;
 }
 
 /* A function to compute ANF */
