@@ -112,8 +112,14 @@ ulong monomial_degree ( ulong M ) {
 // x1*x3*x4 = 1 when x1=x3=x4=1 => bin(111) = 7
 // So x should be 7 to return true
 bool monomial_eval ( ulong M, ulong x ) {
-	ulong degree = monomial_degree (M);
-	if ( x == (( 1UL << degree ) - 1) )
+	ulong count = 0, degree = hamming_weight (M);
+	while ( M != 0UL && x != 0UL ) {
+		if ( M & 1 && x & 1 )
+			count++;
+		x = x >> 1;
+		M = M >> 1;
+	}
+	if ( count == degree )
 		return 1;
 	return 0;
 }
@@ -135,3 +141,11 @@ ulong ANF (ulong *M, ulong m) {
 	return tempMax;
 }
 
+bool ANF_eval (ulong *A, ulong x, ulong m) {
+	ulong anfOutput = ANF (A, m);
+	printf ("ANF: %lu\n", anfOutput);
+	if ( anfOutput <= x )
+		return 1;	
+	else 
+		return 0;
+}	
