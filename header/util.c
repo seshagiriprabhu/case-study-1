@@ -108,9 +108,6 @@ ulong monomial_degree ( ulong M ) {
 }
 
 /* A function to evaluate a Monomial */
-// Say if M = 26 (i.e monomial is x1x3x4)
-// x1*x3*x4 = 1 when x1=x3=x4=1 => bin(111) = 7
-// So x should be 7 to return true
 bool monomial_eval ( ulong M, ulong x ) {
 	ulong count = 0, degree = hamming_weight (M);
 	while ( M != 0UL && x != 0UL ) {
