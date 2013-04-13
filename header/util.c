@@ -139,10 +139,15 @@ ulong ANF (ulong *M, ulong m) {
 }
 
 bool ANF_eval (ulong *A, ulong x, ulong m) {
-	ulong anfOutput = ANF (A, m);
-	printf ("ANF: %lu\n", anfOutput);
-	if ( anfOutput <= x )
-		return 1;	
-	else 
-		return 0;
+	ulong u, i = 0, output = 0, n = 1UL << m;
+	ulong *index, *monomial;
+	monomial = index = allocate_table (m);
+	for ( u = 0; u < n; u++ ) {
+		if ( A[u] & 1 )
+			index[i] = u;
+			i = i + 1;
+	}
+	for ( u = 0; u < i; u++ ) 
+		output += monomial[u] = monomial_eval (index[u], x);
+	return output % 2;
 }	
