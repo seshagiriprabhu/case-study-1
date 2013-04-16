@@ -3,7 +3,7 @@
  * monomial given as an integer  */
 
 #include "header.h"
-/* STATUS: INCOMPLETE */
+/* STATUS: COMPLETE */
 
 int main () {
 	ulong M;

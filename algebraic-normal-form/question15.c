@@ -3,7 +3,7 @@
  * a monomial M at point x ∈ (F2)^m */
 
 #include "header.h"
-/* STATUS: INCOMPLETE */
+/* STATUS: COMPLETE */
 
 int main ( ) {
 	ulong M;

@@ -3,7 +3,7 @@
  * degree of its monomial */
 
 #include "header.h"
-/* STATUS: INCOMPLETE */
+/* STATUS: COMPLETE */
 /* Functions are defined in util.c */
 
 int main ( ) {

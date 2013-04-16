@@ -2,7 +2,7 @@
  * An implementation of ANF_eval function */
 
 #include "header.h"
-/* STATUS : INCOMPLETE */
+/* STATUS : COMPLETE */
 
 int main () {
 	ulong m, u, x;
