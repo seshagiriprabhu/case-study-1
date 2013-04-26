@@ -1,18 +1,5 @@
 # Makefile
 
-# Bonus question:
-# the Makefile now seems correct but does not work as intended:
-# after 'make clean && make', the last output line
-# is 'rm OBJECTS/question3.o'. Do we want that?
-# I spent a certain amount of time finding the error. It is just this
-# kind of problems which contribute to make me hate make!
-# Please, don't spend much time on this.
-# There was an extra ')' bracket at the end of "OBJS := " statement. So
-# the object was saved as "question.o)". This made make think that it 
-# is an intermediate file obtained as part of chain rules. So the 
-# default make rule deleted that file. 
-# I debuuged it using make -np option
-
 CC = gcc
 HEADER = ../header
 UOBJ = $(HEADER)/util.o
