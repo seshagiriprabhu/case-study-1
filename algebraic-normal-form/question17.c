@@ -15,9 +15,7 @@ int main () {
 		printf ("Enter the [%lu] boolean value: ", u);
 		scanf ("%lu", &A[u]);
 	}
-	printf ("Enter the integer (x) which you want to evaluate: ");
-        // --> "Enter the integer (x) at which you want to evaluate the Boolean function : ");
-
+	printf ("Enter the integer (x) at which you want to evaluate the Boolean function: ");
 	scanf ("%lu", &x);
 	if ( ANF_eval (A, x, m) )
 		printf ("%lu is an integer of the given ANF\n", x);
