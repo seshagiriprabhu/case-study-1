@@ -4,6 +4,8 @@
 #include "header.h"
 /* STATUS: COMPLETE */
 
+// OK, i made a mistake, the definition of nonlinearity is:
+// nl(f) = 1/2 * (n - max_{a in F_2^m}  | \hat{f}(a) | )
 /* A function to calculate the non-linerity of given boolean funciton  */
 long nonlinearity ( long *u, ulong m ) {
 	long *walshOutput;

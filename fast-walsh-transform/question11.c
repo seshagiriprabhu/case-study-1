@@ -4,21 +4,33 @@
 #include "header.h"
 /* STATUS: COMPLETE */
 
+// Very good
+// I modified this function, so that :
+// 1) you don't have to repeat the line: 	split = tempSplit = ( 1UL << (m - 1) );
+// (an alternative would be: split/=2 in the 3rd part of the 'for' (idem for tempSplit)
+// 2) you don't modify u in two for loops, which is confusing (well, not that much
+// in this case, at least for me as I know very well this algo, but still)
+// 3) finally I moved tempSplit only in one place, to cache, the value of u+split,
+// I think it is not that necessary (the gain in efficiency should be negligible)
+// 4) replace 1<<m by split
+// Tell me if you find errors. I would remove tempSplit.
+
 /* A function to computer the FastWalshTransform */
 long * FastWalshTransform ( long *f, ulong m1 ) {
 	long  a, m = m1;
-	ulong u, split, tempSplit, n = 1UL << m;
-	split = tempSplit = ( 1UL << (m - 1) );
+	ulong u, v, split, tempSplit, n = 1UL << m;
 
 	for ( u = 0; u < n; u++ ) 
 		f[u] = ( 1 - 2 * f[u] );
 
-	for ( m = m - 1; m > -1; m--, tempSplit = split = ( 1UL << m ) ) {
-		for ( u = 0; u < n; u += split, tempSplit += 2 * split ) {
-			for ( ; u < tempSplit; u++ ) {
-				a = f[u] + f[u + (1UL << m)];
-				f[u + (1UL << m)] = f[u] - f[u + (1UL << m)];
-				f[u] = a;
+	for ( m = m - 1; m >= 0; m--  ) {
+            split = 1UL << m ;
+            for ( u = 0; u < n; u += 2*split ) {
+                        tempSplit = u+split;
+			for ( v=u; v < tempSplit; v++ ) {
+				a = f[v] + f[v + split];
+				f[v + split] = f[v] - f[v + split];
+				f[v] = a;
 			}
 		}
 	} 
