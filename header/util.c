@@ -71,18 +71,19 @@ ulong scalar_product( ulong a, ulong x ) {
 /* STATUS: COMPLETE */
 long * walsh_transform ( long *f, ulong m1 ) {
 	long  a, m = m1;
-	ulong u, split, tempSplit, n = 1UL << m;
-	split = tempSplit = ( 1UL << (m - 1) );
+	ulong u, v, split, tempSplit, n = 1UL << m;
 
 	for ( u = 0; u < n; u++ ) 
 		f[u] = ( 1 - 2 * f[u] );
 
-	for ( m = m - 1; m > -1; m--, tempSplit = split = ( 1UL << m ) ) {
-		for ( u = 0; u < n; u += split, tempSplit += 2 * split ) {
-			for ( ; u < tempSplit; u++ ) {
-				a = f[u] + f[u + (1UL << m)];
-				f[u + (1UL << m)] = f[u] - f[u + (1UL << m)];
-				f[u] = a;
+	for ( m = m - 1; m >= 0; m--  ) {
+    	split = 1UL << m ;
+        for ( u = 0; u < n; u += 2 * split ) {
+        	tempSplit = u + split;
+			for ( v=u; v < tempSplit; v++ ) {
+				a = f[v] + f[v + split];
+				f[v + split] = f[v] - f[v + split];
+				f[v] = a;
 			}
 		}
 	} 
