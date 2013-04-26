@@ -51,7 +51,7 @@ int main () {
 		}
 	}
 
-	printf ("\nThe scalar product between two binary vector is: %lu\n", scalar_product (table_f1, table_f2, m));
+	printf ("\nThe scalar product between two binary vector is: %lu\n", scalar_product_table (table_f1, table_f2, m));
 
 	free (table_f1);
 	free (table_f2);
