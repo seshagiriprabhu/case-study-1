@@ -21,7 +21,7 @@ int main ( ) {
 			i = i - 1;
 		}
 	}
-	printf ("The ANF of given binary function is %lu\n", ANF (M, m)); 
+	printf ("The ANF of given binary function is %lu\n", ANF_degree (M, m)); 
 	free (M);
 	return 0;
 }
