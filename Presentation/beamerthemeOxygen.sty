@@ -3,17 +3,12 @@
 %\usetheme{Marburg} %sucks
 %\usepackage{multimedia}
 
-
 \RequirePackage{pgf}
-
 \pgfdeclareimage[width=1.0\paperwidth]{oxygen-header}{oxygen-header}
-
 \setbeamertemplate{blocks}[rounded][shadow=true]
 \setbeamercovered{transparent}
-
 \beamer@headheight=0.13\paperwidth
 
-%\definecolor{oxygenorange}{HTML}{F7800A}
 \definecolor{oxygenorange}{HTML}{236EAF}
 \definecolor{oxygengray}{HTML}{686868}
 \definecolor{oxygenlightgray}{HTML}{EEEEEE}
@@ -27,11 +22,9 @@
 \setbeamercolor*{section in head/foot}{bg=oxygenblue,fg=white}
 
 \usecolortheme[named=oxygenorange]{structure}
-
+\setbeamerfont{Title bar}{size=\tiny}
 \setbeamerfont{section in head/foot}{size=\tiny,series=\normalfont}
-\setbeamerfont{frametitle}{size=\Large}
-%\beamer@sidebarwidth=0pt
-%\setbeamersize{sidebar width left=0cm}
+\setbeamerfont{frametitle}{size=\large}
 \setbeamertemplate{frametitle}
 {
   \vskip-0.2\beamer@headheight
@@ -65,7 +58,7 @@
   \framelatex{
   \begin{beamercolorbox}[leftskip=.3cm,wd=\paperwidth,ht=0.3\beamer@headheight,sep=0.1cm]{Location bar}
     \usebeamerfont{section in head/foot}%
-    \insertshortauthor~|~\insertshorttitle
+	\insertshorttitle
     \hfill
     \insertframenumber/\inserttotalframenumber
   \end{beamercolorbox}}
