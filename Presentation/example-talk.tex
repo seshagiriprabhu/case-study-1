@@ -1,0 +1,242 @@
+% This text is Free and open Open Source.
+% It's a part of presentation made by myself.
+% It may be used only for academic purpose
+% May, 2012
+% Author: Seshagiri Prabhu
+% Amrita Vishwa Vidyapeethm 
+% seshagiriprabhu@gmail.com
+% www.seshagiriprabhu.wordpress.com
+
+\documentclass[12pt]{beamer}
+\usetheme{Oxygen}
+\usepackage{thumbpdf}
+\usepackage{wasysym}
+\usepackage{ucs}
+\usepackage[utf8]{inputenc}
+\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps,pgfshade}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{courier}
+\usepackage{caption}
+\usepackage{verbatim} 
+\usepackage{upquote}
+\usepackage{graphics}
+\usepackage{latexsym}
+\usepackage{fixltx2e}
+\usepackage{hyperref}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{pgf}
+\usepackage{fmtcount}% http://ctan.org/pkg/fmtcount
+\usepackage{algorithm, algpseudocode}
+\usepackage{caption}
+\captionsetup[algorithm]{font=scriptsize}
+\usepackage{lipsum}
+\newcommand\Fontvi{\fontsize{5}{6}\selectfont}
+%\renewcommand\tinyv{\@setfontsize\tinyv{4pt}{6}}
+%\renewcommand\tiny{\@setfontsize\tiny{4pt}{6}}
+
+\usepackage{xcolor}
+\def\SPSB#1#2{\rlap{\textsuperscript{\textcolor{red}{#1}}}\SB{#2}}
+\def\SP#1{\textsuperscript{\textcolor{red}{#1}}}
+\def\SB#1{\textsubscript{\textcolor{blue}{#1}}}
+
+\pdfinfo
+{
+  /Title       (Computing the Modular Inverse of a Polynomial Function over GF(2^{P}) Using Bit Wise Operation)
+  /Creator     (Seshagiri Prabhu N)
+  /Author      (TeX)
+}
+
+
+\title{Computing the Modular Inverse of a Polynomial Function over GF($2^\textsuperscript{P}$)\\ Using Bit Wise Operation}
+%\subtitle{Basic Introduction}
+\author{Seshagiri Prabhu N}
+\institute[Amrita Vishwa Vidyapeetham] % (optional)
+{
+  \begin{center}
+    M.Tech, Cyber Security and Networks (First Year)\\
+  	Amrita School of Engineering,
+	Amritapuri Campus
+  \end{center}
+  
+}
+%\newcounter{mycounter}%
+%\newcommand{\binnum}[2][4]{%
+%  \setcounter{mycounter}{\numexpr #2\relax}%
+%  \padzeroes[#1]{\binary{mycounter}}%
+%}
+
+\begin{document}
+\frame{\titlepage}
+\section*{}
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents[section=1,hidesubsections]
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%% Content starts here %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+
+\begin{frame}{timebomb}
+  \frametitle{Introduction}
+	\begin{enumerate}
+		\item Relevance of Modulo arithmetic in public key crypto system
+		\item The use of \textbf{E}xtended \textbf{E}uclidean \textbf{A}lgorithm (\textbf{EEA}) to evaluate the multiplicative inverse
+	\end{enumerate}
+\end{frame}
+
+
+\section{Contribution of this paper}
+\begin{frame}
+\frametitle{Contribution of this paper}
+	\begin{block}{Contribution of this paper}
+		Computerized algorithm for the determination of the multiplicative inverse of a polynomial over GF(2\SP{P}) using simple bit wise shift and XOR operations. 	
+	\end{block}
+\end{frame}
+
+\section{Problem Description}
+\begin{frame}
+\frametitle{Problem Description}
+	\begin{block}{EEA}
+		Let \textcolor{red}{$A(x)$} and \textcolor{red}{$B(x)$} be polynomials.\\
+		EEA gives \textcolor{red}{$U$} and \textcolor{red}{$V$} such that\\
+		$\gcd{(A, B)} = U*A + V*B$
+	\end{block}
+	\begin{block}{Note}
+	If \textcolor{red}{$A$} is irreducible, then its $\gcd$ is \textcolor{red}{$1$}, and we are only
+	interested in \textcolor{red}{$V$}, which is the inverse of \textcolor{red}{$B [mod A]$}
+	\end{block}
+\end{frame}
+\begin{frame}
+\frametitle{Problem Description}
+	\begin{block}{Polynomial representation}
+	  	The finite field is a representative of a polynomial function with respect to one variable x: \\
+	  	GF(2\SP{p}) = x\SP{p-1} + x\SP{p-2} + \dots + x\SP{2} + x\SP{1}
+	\end{block}
+	\begin{block}{Example}
+		Finite field GF(2\SP{8}) = x\SP{8} + x\SP{4} + x\SP{3} + x + 1 \\
+		53\SB{10} $\rightarrow$ $1010011$\SB{2} $\rightarrow$ (x\SP{6} + x\SP{4} + x + 1) \\
+		The EEA of 53 on GF(2\SP{8}) is x\SP{7} + x\SP{6} + x\SP{3} + x	 
+	 \end{block}
+\end{frame}
+
+\section{Proposed Algorithm}
+\begin{frame}[fragile]
+	\frametitle{Proposed Algorithm}
+	\begin{algorithm}[H]
+		%\algsetup{linenosize=\tiny}
+	  	\tiny
+		\label{euclid}
+		\begin{algorithmic}
+			\Procedure{Multiplicative Inverse}{$A_{3}[\hspace{1mm}]$, $B_{3}[\hspace{1mm}]$}
+				\State $C\SB{1} = A\SB{2} = B\SB{2} = 0$;
+				\While {($B\SB{3} \textgreater 1$)} \Comment{Step 1 do}
+					\State $Q = 0$;
+					\State $Temp = B\SB{3}$;
+					\While {($A\SB{}3 > Temp \parallel BitSize(C) \geq BitSize(Temp)$)}
+						\State $Q\SB{1} = 1$;
+						\While {($A\SB{3MSB} == B\SB{3MSB}$)}
+							\State $B\SB{3} = B\SB{3} << LinearLeftShift$ ;
+							\State $Q\SB{1} = Q\SB{1} * 2$;
+						\EndWhile
+							\State $Q = Q + Q\SB{1}$;
+							\State $A\SB{3} = A\SB{3}[\hspace{1mm}] \oplus B\SB{3}[\hspace{1mm}]$;
+							\State $B\SB{3} = Temp$;
+					\EndWhile
+					\State $A\SB{2} = B\SB{2}; B\SB{3} = A\SB{3}; A\SB{3} = Temp$;
+					\State $N = BitSize(Q)$; \Comment {Binary Bit Size of Q}
+					\State $Temp = B\SB{2}; C\SB{2}=0;$\Comment {Step2}	
+					\While{($N\geq1$)}
+						\State $C\SB{2} = 0\SB{d}$;
+						\If {($Q\SB{N}==1$)}\Comment {Testing if Nth bit of Q is 1}
+							\State $C\SB{1}=B\SB{2}<< N-1$; \Comment{Linear left shift by N-1 times}
+							\State $C\SB{2} = C\SB{2}\oplus C\SB{1}$;
+						\EndIf
+						\State $N--$;
+					\EndWhile
+					\State $B\SB{2} = C\SB{2}; A\SB{2} = Temp; B\SB{2}=B\SB{2} \oplus A\SB{2};$ \Comment  {Multiplicative Inverse}
+				\EndWhile
+			\EndProcedure
+		\end{algorithmic}
+%		\caption{\tiny {Euclidean Algorithm}}
+	\end{algorithm}
+\end{frame}
+
+\section{Implementation of Algorithm}
+\begin{frame}
+	\frametitle{Implementation of Algorithm}
+	\framesubtitle{Let's apply EEA to A = 283 and B = 42}
+	\tiny 
+	\begin{center}
+		\begin{tabular}{| l | c | c | r | r |}
+			\hline
+			i & Operation & Binary & U & V \\ \hline
+			0 & $A$ & $100011011$ & 1 & 0 \\ \hline 
+			1 & $B$ & $000101010$ & 0 & 1 \\ \hline
+			  & $3<<B$ & $101010000$ & 0 & 1000 \\ 
+			2 & $A \leftarrow A \oplus (3<<B)$ & $001001011$ & 1 & 1000 \\ \hline
+			 & $1<<B$ & $001010100$ & 0 & 0010 \\
+			3 & $A \leftarrow A \oplus (1<<B)$ & $000011111$ & 1 & 1010 \\ \hline
+			 & $A<B \hspace{1mm} A \rightleftharpoons B$ & & & \\
+			 & $A$ & $000101010$ & 00 & 00001 \\
+			 & $B$ & $000011111$ & 01 & 01010 \\
+			 & $1<<B$ & $000111110$ & 10 & 10100 \\
+			4 & $A \leftarrow A \oplus (1<<B)$ & $000010100$ & 10 & 10101 \\ \hline
+			 & $A<B \hspace{1mm} A \rightleftharpoons B$ & & & \\
+			 & $A$ & $000011111$ & 01 & 01010 \\
+			 & $B$ & $000010100$ & 10 & 10101 \\
+			5 & $A \leftarrow A \oplus B$ & $000001011$ & 11 & 11111 \\ \hline
+			 & $A<B \hspace{1mm} A \rightleftharpoons B$ & & & \\
+			 & $A$ & $000010100$ & 010 & 010101 \\
+			 & $B$ & $000001011$ & 011 & 011111 \\
+			 & $1<<B$ & $000010110$ & 110 & 111110 \\
+			6 & $A \leftarrow A \oplus (1<<B)$ & $000000010$ & 100 &  101011 \\ \hline	
+			 & $A<B \hspace{1mm} A \rightleftharpoons B$ & & & \\
+			 & $A$ & $000001011$ & 00011 & 00011111 \\
+			 & $B$ & $000000010$ & 00100 & 00101011 \\
+			 & $2<<B)$ & $000001000$ & 10000 & 10101100 \\
+			7 & $A \leftarrow A \oplus (1<<B)$ & $000000011$ & 10011 & 10110011 \\ \hline
+			8 & $A \leftarrow A \oplus B$ & $000000001$ & 10111 & 10011000 \\ \hline		 
+		\end{tabular}
+	\end{center}
+\end{frame}
+
+\section{Conclusion}
+\begin{frame}
+\frametitle{Conclusion}
+	\begin{enumerate}
+		   \item This algorithm can be easily extended for determining the elements of the S-Box used in $AES$.
+	   \item This algorithm is efficient for determining the multiplicative inverse of polynomial over $GF(2\SP{P})$
+	\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Future works}
+  \begin{block}{Possible future works}
+  	\begin{enumerate}
+  		\item Optimize the algorithm
+  		\item Comparative study with many existing algorithm
+  		\item Implementation in hardware for real time applications
+  	\end{enumerate}
+  \end{block}
+\end{frame}
+
+
+\frame{
+  \vspace{2cm}
+  {\huge Questions ?}
+  \vspace{3cm}
+  \begin{flushright}
+	Seshagiri Prabhu
+
+    \structure{\footnotesize{seshagiriprabhu@gmail.com}}
+  \end{flushright}
+}
+
+\end{document}
