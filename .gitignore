@@ -22,6 +22,9 @@
 #swap File
 *.swp
 
+#Tex related files
+*.nav
+*.snm
 *.aux
 *.glo
 *.idx
